@@ -16,7 +16,7 @@
 
     body {
       font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-      background: #0f0f1a;
+      background: #1a1a2e;
       color: #e0e0e0;
     }
 
@@ -54,7 +54,7 @@
       transform: rotate(180deg);
     }
 
-    /* Floating open button (visible when panel is collapsed) */
+    /* Floating open button */
     .open-btn {
       position: fixed;
       top: 16px;
@@ -73,7 +73,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.3s, transform 0.3s;
+      transition: opacity 0.3s;
       opacity: 0;
       pointer-events: none;
     }
@@ -196,21 +196,28 @@
       border-color: rgba(99, 132, 255, 0.3);
     }
 
-    /* My location button */
-    .loc-btn {
+    /* Bottom buttons row */
+    .bottom-btns {
       position: fixed;
       bottom: 24px;
       right: 24px;
       z-index: 1000;
-      width: 48px;
-      height: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .ctrl-btn {
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: rgba(15, 15, 30, 0.92);
       backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
       color: #6384ff;
-      font-size: 22px;
+      font-size: 20px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -218,14 +225,146 @@
       transition: all 0.2s;
     }
 
-    .loc-btn:hover {
+    .ctrl-btn:hover {
       background: rgba(99, 132, 255, 0.2);
       transform: scale(1.1);
     }
 
-    .loc-btn.tracking {
+    .ctrl-btn.tracking {
       color: #4ade80;
       border-color: rgba(74, 222, 128, 0.3);
+    }
+
+    /* Theme switcher */
+    .theme-menu {
+      position: fixed;
+      bottom: 80px;
+      right: 24px;
+      z-index: 1001;
+      background: rgba(15, 15, 30, 0.95);
+      backdrop-filter: blur(16px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      padding: 6px;
+      display: none;
+    }
+
+    .theme-menu.open {
+      display: block;
+    }
+
+    .theme-opt {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: none;
+      background: transparent;
+      color: #bbb;
+      cursor: pointer;
+      font-size: 12px;
+      font-family: inherit;
+      border-radius: 8px;
+      width: 100%;
+      text-align: left;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .theme-opt:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+    }
+
+    .theme-opt.active {
+      background: rgba(99, 132, 255, 0.15);
+      color: #fff;
+    }
+
+    /* Compass */
+    .compass {
+      position: fixed;
+      top: 16px;
+      right: 64px;
+      z-index: 1000;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .compass-rose {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(15, 15, 30, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .compass-n {
+      position: absolute;
+      top: 3px;
+      font-size: 10px;
+      font-weight: 800;
+      color: #ff4444;
+    }
+
+    .compass-s {
+      position: absolute;
+      bottom: 3px;
+      font-size: 8px;
+      font-weight: 600;
+      color: #888;
+    }
+
+    .compass-e {
+      position: absolute;
+      right: 5px;
+      font-size: 8px;
+      font-weight: 600;
+      color: #888;
+    }
+
+    .compass-w {
+      position: absolute;
+      left: 5px;
+      font-size: 8px;
+      font-weight: 600;
+      color: #888;
+    }
+
+    .compass-needle {
+      width: 2px;
+      height: 20px;
+      position: relative;
+    }
+
+    .compass-needle::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -3px;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 10px solid #ff4444;
+    }
+
+    .compass-needle::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -3px;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 10px solid #888;
     }
 
     /* Legend */
@@ -330,7 +469,80 @@
       color: #fff;
     }
 
-    /* Marker labels (permanent tooltips) */
+    /* Overlapping marker list popup */
+    .overlap-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .overlap-list-title {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .overlap-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 8px;
+      margin: 2px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: 1px solid transparent;
+    }
+
+    .overlap-item:hover {
+      background: rgba(99, 132, 255, 0.12);
+      border-color: rgba(99, 132, 255, 0.25);
+    }
+
+    .overlap-item-icon {
+      font-size: 16px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .overlap-item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .overlap-item-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #e0e0e0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .overlap-item-meta {
+      font-size: 10px;
+      color: #888;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .overlap-item-day {
+      display: inline-block;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    /* Marker labels */
     .marker-label {
       background: rgba(15, 15, 30, 0.85) !important;
       backdrop-filter: blur(8px);
@@ -400,8 +612,18 @@
         justify-content: center;
       }
 
-      .loc-btn {
+      .bottom-btns {
         bottom: 16px;
+        right: 16px;
+      }
+
+      .compass {
+        top: 8px;
+        right: 56px;
+      }
+
+      .theme-menu {
+        bottom: 72px;
         right: 16px;
       }
 
@@ -426,11 +648,33 @@
     <button class="all-btn" id="allBtn" onclick="showAll()">📍 전체 경로 보기</button>
   </div>
 
-  <!-- Floating open button (shown when panel collapsed) -->
+  <!-- Floating open button -->
   <button class="open-btn" id="openBtn" onclick="openPanel()">☰</button>
 
-  <!-- My Location Button -->
-  <button class="loc-btn" id="locBtn" onclick="toggleLocation()" title="내 위치">📍</button>
+  <!-- Compass -->
+  <div class="compass">
+    <div class="compass-rose">
+      <span class="compass-n">N</span>
+      <span class="compass-s">S</span>
+      <span class="compass-e">E</span>
+      <span class="compass-w">W</span>
+      <div class="compass-needle"></div>
+    </div>
+  </div>
+
+  <!-- Bottom controls -->
+  <div class="bottom-btns">
+    <button class="ctrl-btn" id="themeBtn" onclick="toggleThemeMenu()" title="지도 테마">🎨</button>
+    <button class="ctrl-btn" id="locBtn" onclick="toggleLocation()" title="내 위치">📍</button>
+  </div>
+
+  <!-- Theme menu -->
+  <div class="theme-menu" id="themeMenu">
+    <button class="theme-opt active" data-theme="standard" onclick="setTheme('standard')">🗺️ 기본 (Standard)</button>
+    <button class="theme-opt" data-theme="dark" onclick="setTheme('dark')">🌙 다크 (Dark)</button>
+    <button class="theme-opt" data-theme="satellite" onclick="setTheme('satellite')">🛰️ 위성 (Satellite)</button>
+    <button class="theme-opt" data-theme="terrain" onclick="setTheme('terrain')">⛰️ 지형 (Terrain)</button>
+  </div>
 
   <!-- Legend -->
   <div class="legend" id="legend"></div>
@@ -443,14 +687,68 @@
       zoomControl: false
     });
 
-    L.control.zoom({
-      position: 'topright'
-    }).addTo(map);
+    L.control.zoom({ position: 'topright' }).addTo(map);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© OpenStreetMap · © CARTO',
-      maxZoom: 19
-    }).addTo(map);
+    // ── Tile Layers (Themes) ──
+    const tileLayers = {
+      standard: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap',
+        maxZoom: 19
+      }),
+      dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '© OpenStreetMap · © CARTO',
+        maxZoom: 19
+      }),
+      satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: '© Esri',
+        maxZoom: 18
+      }),
+      terrain: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenTopoMap',
+        maxZoom: 17
+      })
+    };
+
+    let currentTheme = 'standard';
+    tileLayers.standard.addTo(map);
+
+    function setTheme(name) {
+      map.removeLayer(tileLayers[currentTheme]);
+      tileLayers[name].addTo(map);
+      currentTheme = name;
+
+      // Update active state
+      document.querySelectorAll('.theme-opt').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.theme === name);
+      });
+
+      // Adapt UI colors for light/dark themes
+      const isLight = (name === 'standard' || name === 'terrain');
+      document.querySelectorAll('.marker-label').forEach(el => {
+        if (isLight) {
+          el.style.background = 'rgba(255,255,255,0.9)';
+          el.style.borderColor = 'rgba(0,0,0,0.15)';
+          el.style.color = '#333';
+        } else {
+          el.style.background = 'rgba(15,15,30,0.85)';
+          el.style.borderColor = 'rgba(255,255,255,0.1)';
+          el.style.color = '#ccc';
+        }
+      });
+
+      document.getElementById('themeMenu').classList.remove('open');
+    }
+
+    function toggleThemeMenu() {
+      document.getElementById('themeMenu').classList.toggle('open');
+    }
+
+    // Close theme menu when clicking elsewhere
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#themeBtn') && !e.target.closest('#themeMenu')) {
+        document.getElementById('themeMenu').classList.remove('open');
+      }
+    });
 
     // ── Day Colors ──
     const dayColors = [
@@ -458,625 +756,160 @@
       '#4dabf7', '#6384ff', '#9775fa', '#e599f7', '#ff8787', '#74c0fc'
     ];
 
-    // ── POI Data ──
-    const days = [{
-      id: 1,
-      label: 'D1',
-      date: '3/6 (금)',
-      title: 'Vienna 도착',
-      color: dayColors[0],
-      center: [48.20, 16.38],
-      zoom: 14,
-      points: [{
-        lat: 48.1103,
-        lng: 16.5697,
-        icon: '✈️',
-        name: '빈 공항 도착',
-        time: '16:55',
-        desc: 'Flughafen Wien Schwechat'
-      }, {
-        lat: 48.2052,
-        lng: 16.3879,
-        icon: '🚆',
-        name: 'Wien Mitte (CAT 하차)',
-        time: '~17:20',
-        desc: 'City Airport Train 하차 후 도보'
-      }, {
-        lat: 48.2044,
-        lng: 16.3861,
-        icon: '🏨',
-        name: 'Hilton Vienna Park',
-        time: '17:30',
-        desc: '체크인 & 휴식'
-      }, {
-        lat: 48.2028,
-        lng: 16.3837,
-        icon: '🍽️',
-        name: 'Ribs of Vienna',
-        time: '20:00',
-        desc: '저녁 (예약 완료)'
-      }, {
-        lat: 48.2039,
-        lng: 16.3794,
-        icon: '🚶',
-        name: 'Stadtpark 산책',
-        time: '21:00~',
-        desc: '숙소 주변 가벼운 산책 (선택)'
-      },]
-    }, {
-      id: 2,
-      label: 'D2',
-      date: '3/7 (토)',
-      title: 'Vienna 관광',
-      color: dayColors[1],
-      center: [48.203, 16.372],
-      zoom: 15,
-      points: [{
-        lat: 48.2082,
-        lng: 16.3738,
-        icon: '⛪',
-        name: '슈테판 대성당',
-        time: '09:00–10:30',
-        desc: '1.5시간 여유 관람'
-      }, {
-        lat: 48.2107,
-        lng: 16.3735,
-        icon: '⏰',
-        name: '앙커우어 인형시계',
-        time: '11:00',
-        desc: 'Hoher Markt, 인형 퍼레이드'
-      }, {
-        lat: 48.2079,
-        lng: 16.3754,
-        icon: '🍽️',
-        name: 'Figlmüller',
-        time: '11:30–12:30',
-        desc: '점심 (예약 완료 ✅)'
-      }, {
-        lat: 48.2058,
-        lng: 16.3663,
-        icon: '📚',
-        name: '국립도서관 Prunksaal',
-        time: '12:50–13:25',
-        desc: '바로크 대홀'
-      }, {
-        lat: 48.2068,
-        lng: 16.3656,
-        icon: '🏛️',
-        name: '호프부르크 왕궁',
-        time: '13:45–15:20',
-        desc: '시시 박물관 + 황실 아파트'
-      }, {
-        lat: 48.2008,
-        lng: 16.3644,
-        icon: '☕',
-        name: 'Café Museum',
-        time: '15:30',
-        desc: '디저트 (동선 최적)'
-      }, {
-        lat: 48.1914,
-        lng: 16.3808,
-        icon: '🖼️',
-        name: 'Upper Belvedere',
-        time: '16:00–18:00',
-        desc: '클림트 〈키스〉 / €22.50'
-      }, {
-        lat: 48.2027,
-        lng: 16.3813,
-        icon: '🍽️',
-        name: 'Gmoa Keller',
-        time: '18:15–19:30',
-        desc: '저녁 추천 (동선 최적)'
-      },]
-    }, {
-      id: 3,
-      label: 'D3',
-      date: '3/8 (일)',
-      title: 'Vienna→Salzburg',
-      color: dayColors[2],
-      center: [47.95, 14.5],
-      zoom: 7,
-      points: [{
-        lat: 48.2044,
-        lng: 16.3861,
-        icon: '🏨',
-        name: 'Hilton Vienna Park 체크아웃',
-        time: '08:00',
-        desc: 'Express Check-out'
-      }, {
-        lat: 48.1853,
-        lng: 16.3768,
-        icon: '🚆',
-        name: 'Wien Hauptbahnhof',
-        time: '09:00–09:57',
-        desc: '아침+기념품+기차 탑승'
-      }, {
-        lat: 47.8132,
-        lng: 13.0458,
-        icon: '🚆',
-        name: 'Salzburg Hbf 도착',
-        time: '12:49',
-        desc: 'OBB Railjet (2h 52m)'
-      }, {
-        lat: 47.8115,
-        lng: 13.0430,
-        icon: '🏨',
-        name: 'Villa Elisa',
-        time: '13:05',
-        desc: '짐 맡기기 (체크인 14:00)'
-      }, {
-        lat: 47.8056,
-        lng: 13.0353,
-        icon: '🍽️',
-        name: 'Bärenwirt',
-        time: '13:45',
-        desc: '점심 추천 (1663년 전통)'
-      }, {
-        lat: 47.8003,
-        lng: 13.0435,
-        icon: '🎵',
-        name: '모차르트 생가',
-        time: '14:40–15:00',
-        desc: 'Getreidegasse / 20분 핵심 관람'
-      }, {
-        lat: 47.7951,
-        lng: 13.0474,
-        icon: '🏰',
-        name: '호엔잘츠부르크 요새',
-        time: '15:00–17:00',
-        desc: 'FestungsBahn / 관람 ~1h 45m'
-      }, {
-        lat: 47.8041,
-        lng: 13.0318,
-        icon: '🍽️',
-        name: 'Augustiner Bräustübl',
-        time: '18:00',
-        desc: '저녁 추천 (1621년 양조장)'
-      },]
-    }, {
-      id: 4,
-      label: 'D4',
-      date: '3/9 (월)',
-      title: '키츠슈타인호른 & 첼암제',
-      color: dayColors[3],
-      center: [47.5, 13.0],
-      zoom: 9,
-      points: [{
-        lat: 47.8132,
-        lng: 13.0458,
-        icon: '🚗',
-        name: 'Salzburg 출발',
-        time: '09:20',
-        desc: 'Sixt 렌트카 픽업 후 출발'
-      }, {
-        lat: 47.2167,
-        lng: 12.6937,
-        icon: '⛷️',
-        name: 'Kitzsteinhorn (TOP OF SALZBURG)',
-        time: '10:50–14:30',
-        desc: '해발 3,029m 전망대 / €59'
-      }, {
-        lat: 47.3233,
-        lng: 12.7969,
-        icon: '🚶',
-        name: 'Zell am See (첼암제)',
-        time: '15:30–16:50',
-        desc: '호수 산책로 + 구시가지'
-      }, {
-        lat: 47.8132,
-        lng: 13.0458,
-        icon: '🚗',
-        name: 'Salzburg 복귀',
-        time: '18:45',
-        desc: '복귀 (~1h 40m)'
-      }, {
-        lat: 47.8154,
-        lng: 13.0440,
-        icon: '🍽️',
-        name: 'Zum Fidelen Affen',
-        time: '19:15',
-        desc: '저녁 추천 (전통 Beisl)'
-      },]
-    }, {
-      id: 5,
-      label: 'D5',
-      date: '3/10 (화)',
-      title: '할슈타트 & 다흐슈타인',
-      color: dayColors[4],
-      center: [47.5, 13.5],
-      zoom: 10,
-      points: [{
-        lat: 47.8132,
-        lng: 13.0458,
-        icon: '🚗',
-        name: 'Salzburg 출발',
-        time: '07:30',
-        desc: '할슈타트까지 ~1.5h'
-      }, {
-        lat: 47.5594,
-        lng: 13.6478,
-        icon: '🅿️',
-        name: '할슈타트 P2 주차장',
-        time: '09:00',
-        desc: '터널 주차장'
-      }, {
-        lat: 47.5623,
-        lng: 13.6493,
-        icon: '📸',
-        name: '할슈타트 관광',
-        time: '09:35–11:30',
-        desc: '전망대 · 마르크트 광장 · 호수'
-      }, {
-        lat: 47.5610,
-        lng: 13.6480,
-        icon: '🍽️',
-        name: 'Bräugasthof Hallstatt',
-        time: '11:30–12:20',
-        desc: '점심 (호수 뷰)'
-      }, {
-        lat: 47.5517,
-        lng: 13.6862,
-        icon: '🏔️',
-        name: '파이브핑거스 (다흐슈타인)',
-        time: '13:00–15:30',
-        desc: '케이블카 + 파노라마 뷰'
-      }, {
-        lat: 47.8132,
-        lng: 13.0458,
-        icon: '🚗',
-        name: 'Salzburg 복귀 + 렌트카 반납',
-        time: '17:50',
-        desc: 'Sixt 24h 반납'
-      }, {
-        lat: 47.8041,
-        lng: 13.0318,
-        icon: '🍽️',
-        name: 'Augustiner Bräustübl',
-        time: '19:00',
-        desc: '저녁 추천'
-      },]
-    }, {
-      id: 6,
-      label: 'D6',
-      date: '3/11 (수)',
-      title: 'Salzburg→Prague 이동',
-      color: dayColors[5],
-      center: [49.0, 14.5],
-      zoom: 7,
-      points: [{
-        lat: 47.8115,
-        lng: 13.0430,
-        icon: '🏨',
-        name: 'Villa Elisa 체크아웃',
-        time: '09:00',
-        desc: '기차 대비 일찍 출발'
-      }, {
-        lat: 47.8132,
-        lng: 13.0458,
-        icon: '🚆',
-        name: 'Salzburg Hbf',
-        time: '10:07',
-        desc: 'OBB Railjet → Wien'
-      }, {
-        lat: 48.1853,
-        lng: 16.3768,
-        icon: '🍽️',
-        name: 'Wien Hbf (환승/점심)',
-        time: '12:32–14:10',
-        desc: '역 내 식당가'
-      }, {
-        lat: 50.0832,
-        lng: 14.4348,
-        icon: '🚆',
-        name: 'Praha hl.n. 도착',
-        time: '18:23',
-        desc: 'OBB (4h 13m) / €14.30'
-      }, {
-        lat: 50.0845,
-        lng: 14.4280,
-        icon: '🏨',
-        name: '프라하 숙소 체크인',
-        time: '18:30',
-        desc: ''
-      }, {
-        lat: 50.0898,
-        lng: 14.4214,
-        icon: '🍽️',
-        name: 'Lokál Dlouhááá',
-        time: '19:30',
-        desc: '저녁 추천 (체코 전통)'
-      },]
-    }, {
-      id: 7,
-      label: 'D7',
-      date: '3/12 (목)',
-      title: 'Prague 핵심 관광',
-      color: dayColors[6],
-      center: [50.088, 14.41],
-      zoom: 15,
-      points: [{
-        lat: 50.0865,
-        lng: 14.3889,
-        icon: '📚',
-        name: '스트라호프 수도원',
-        time: '09:00–10:00',
-        desc: '신학의 방 / 철학의 방 / 150 CZK'
-      }, {
-        lat: 50.0895,
-        lng: 14.3940,
-        icon: '☕',
-        name: '프라하성 앞 스타벅스',
-        time: '10:00',
-        desc: '커피 + 기념품'
-      }, {
-        lat: 50.0908,
-        lng: 14.4005,
-        icon: '🏰',
-        name: '프라하 성 (Main Circuit)',
-        time: '10:15–12:30',
-        desc: '성비투스 대성당 · 황금 소로 / 450 CZK'
-      }, {
-        lat: 50.0879,
-        lng: 14.4010,
-        icon: '🚶',
-        name: '네루도바 거리 (하산)',
-        time: '12:30–13:00',
-        desc: '내리막 산책'
-      }, {
-        lat: 50.0865,
-        lng: 14.4050,
-        icon: '🍽️',
-        name: 'Lokál U Bílé kuželky',
-        time: '13:00–13:45',
-        desc: '점심 추천 (체코 전통)'
-      }, {
-        lat: 50.0880,
-        lng: 14.4060,
-        icon: '🏛️',
-        name: '말라 스트라나',
-        time: '13:45–14:30',
-        desc: '발트슈타인 궁전 · 존레논벽'
-      }, {
-        lat: 50.0865,
-        lng: 14.4113,
-        icon: '🌉',
-        name: '카를교',
-        time: '14:30–15:15',
-        desc: '도보 횡단 (서→동)'
-      }, {
-        lat: 50.0875,
-        lng: 14.4213,
-        icon: '🏙️',
-        name: '구시가지 광장',
-        time: '15:15–17:00',
-        desc: '천문시계 · 틴 교회 · 하벨시장'
-      }, {
-        lat: 50.0898,
-        lng: 14.4214,
-        icon: '🍽️',
-        name: 'Lokál Dlouhááá',
-        time: '19:00',
-        desc: '저녁 추천'
-      },]
-    }, {
-      id: 8,
-      label: 'D8',
-      date: '3/13 (금)',
-      title: 'Dresden 당일치기',
-      color: dayColors[7],
-      center: [50.6, 14.0],
-      zoom: 8,
-      points: [{
-        lat: 50.0832,
-        lng: 14.4348,
-        icon: '🚆',
-        name: 'Praha hl.n. 출발',
-        time: '10:31',
-        desc: 'EC → Dresden / €18.99'
-      }, {
-        lat: 51.0401,
-        lng: 13.7325,
-        icon: '🚆',
-        name: 'Dresden Hbf 도착',
-        time: '12:50',
-        desc: ''
-      }, {
-        lat: 51.0519,
-        lng: 13.7414,
-        icon: '⛪',
-        name: '① 프라우엔 교회',
-        time: '13:15 / 14:10',
-        desc: '외관→점심→내부 순서'
-      }, {
-        lat: 51.0515,
-        lng: 13.7400,
-        icon: '🍽️',
-        name: 'Augustiner an der Frauenkirche',
-        time: '13:25–14:10',
-        desc: '점심 (바이에른식 맥주홀)'
-      }, {
-        lat: 51.0531,
-        lng: 13.7427,
-        icon: '🌅',
-        name: '② 브륄의 테라스',
-        time: '14:30–14:50',
-        desc: '"유럽의 발코니" 엘베강 조망'
-      }, {
-        lat: 51.0525,
-        lng: 13.7388,
-        icon: '🎨',
-        name: '③ 군주의 행렬',
-        time: '14:50–15:05',
-        desc: '101m 도자기 벽화'
-      }, {
-        lat: 51.0530,
-        lng: 13.7336,
-        icon: '🏛️',
-        name: '④ 츠빙거 궁전',
-        time: '15:05–16:15',
-        desc: '바로크 건축 / 박물관 €14'
-      }, {
-        lat: 51.0542,
-        lng: 13.7354,
-        icon: '🎭',
-        name: '⑤ 젬퍼 오페라',
-        time: '16:15–16:40',
-        desc: '외관 감상'
-      }, {
-        lat: 51.0401,
-        lng: 13.7325,
-        icon: '🚆',
-        name: 'Dresden Hbf 복귀',
-        time: '17:10',
-        desc: 'EC → Praha / €19.99'
-      },]
-    }, {
-      id: 9,
-      label: 'D9',
-      date: '3/14 (토)',
-      title: 'Prague 여유 관광',
-      color: dayColors[8],
-      center: [50.082, 14.42],
-      zoom: 14,
-      points: [{
-        lat: 50.0647,
-        lng: 14.4198,
-        icon: '🏰',
-        name: '비세흐라드',
-        time: '09:00–11:00',
-        desc: '성벽 산책 · 드보르작 묘지'
-      }, {
-        lat: 50.0726,
-        lng: 14.4147,
-        icon: '🛒',
-        name: '나플라브카 파머스 마켓',
-        time: '11:00–12:00',
-        desc: '토요일 한정 강변 마켓'
-      }, {
-        lat: 50.0781,
-        lng: 14.4067,
-        icon: '🍽️',
-        name: 'Café Savoy',
-        time: '12:15–13:00',
-        desc: '점심 추천 (1893년 네오르네상스)'
-      }, {
-        lat: 50.0960,
-        lng: 14.4213,
-        icon: '🌳',
-        name: '레트나공원',
-        time: '13:15–14:30',
-        desc: '파노라마 뷰 + Beer Garden'
-      }, {
-        lat: 50.0850,
-        lng: 14.4220,
-        icon: '🛍️',
-        name: '하벨시장 + 쇼핑',
-        time: '14:30–16:30',
-        desc: '기념품 · Na Příkopě'
-      }, {
-        lat: 50.0835,
-        lng: 14.4185,
-        icon: '🍽️',
-        name: 'U Medvídků',
-        time: '17:30',
-        desc: '저녁 추천 (1466년, X-Beer 33)'
-      },]
-    }, {
-      id: 10,
-      label: 'D10',
-      date: '3/15 (일)',
-      title: 'Český Krumlov 당일치기',
-      color: dayColors[9],
-      center: [49.4, 14.4],
-      zoom: 8,
-      points: [{
-        lat: 50.0832,
-        lng: 14.4348,
-        icon: '🚆',
-        name: 'Praha hl.n. 출발',
-        time: '09:21',
-        desc: '직행 (2h 28m) / 255 CZK'
-      }, {
-        lat: 48.8042,
-        lng: 14.3100,
-        icon: '🚆',
-        name: 'Český Krumlov역 도착',
-        time: '11:49',
-        desc: '도보 ~20분 → 구시가지'
-      }, {
-        lat: 48.8108,
-        lng: 14.3155,
-        icon: '🍽️',
-        name: 'Krčma Šatlava',
-        time: '12:15–13:00',
-        desc: '점심 (중세 지하감옥 컨셉)'
-      }, {
-        lat: 48.8095,
-        lng: 14.3128,
-        icon: '📸',
-        name: '전망대',
-        time: '13:00–13:15',
-        desc: '블타바 강 + 마을 전경'
-      }, {
-        lat: 48.8128,
-        lng: 14.3148,
-        icon: '🏰',
-        name: '체스키 크룸로프 성',
-        time: '13:15–15:00',
-        desc: '성 탑 · 박물관 · 정원 / 50 CZK'
-      }, {
-        lat: 48.8110,
-        lng: 14.3170,
-        icon: '🚶',
-        name: '강변 + 구시가지',
-        time: '15:00–16:00',
-        desc: '자유시간 · 기념품'
-      }, {
-        lat: 48.8042,
-        lng: 14.3100,
-        icon: '🚆',
-        name: 'Český Krumlov역 출발',
-        time: '16:59',
-        desc: '→ Praha 19:39 (경유)'
-      },]
-    }, {
-      id: 11,
-      label: 'D11',
-      date: '3/16 (월)',
-      title: 'Prague 출발 ✈️',
-      color: dayColors[10],
-      center: [50.07, 14.42],
-      zoom: 13,
-      points: [{
-        lat: 50.0845,
-        lng: 14.4280,
-        icon: '🏨',
-        name: '숙소 체크아웃',
-        time: '10:00',
-        desc: ''
-      }, {
-        lat: 50.0865,
-        lng: 14.4113,
-        icon: '🌉',
-        name: '프라하 자유시간',
-        time: '10:15–11:30',
-        desc: '카를교 재방문 · 마지막 산책'
-      }, {
-        lat: 50.0875,
-        lng: 14.4213,
-        icon: '🍽️',
-        name: '점심',
-        time: '11:30–12:30',
-        desc: 'Café Imperial or Lokál'
-      }, {
-        lat: 50.1008,
-        lng: 14.2600,
-        icon: '✈️',
-        name: 'Václav Havel 공항 (PRG)',
-        time: '14:30',
-        desc: '면세점 · 체크인 16:30 · 출발 18:30'
-      },]
-    }];
+    // ── POI Data (corrected coordinates) ──
+    const days = [
+      {
+        id: 1, label: 'D1', date: '3/6 (금)', title: 'Vienna 도착',
+        color: dayColors[0],
+        center: [48.20, 16.38], zoom: 14,
+        points: [
+          { lat: 48.1103, lng: 16.5697, icon: '✈️', name: '빈 공항 도착', time: '16:55', desc: 'Flughafen Wien Schwechat' },
+          { lat: 48.2061, lng: 16.3852, icon: '🚆', name: 'Wien Mitte (CAT 하차)', time: '~17:20', desc: 'City Airport Train 하차 후 도보' },
+          { lat: 48.2062, lng: 16.3829, icon: '🏨', name: 'Hilton Vienna Park', time: '17:30', desc: '체크인 & 휴식' },
+          { lat: 48.2058, lng: 16.3750, icon: '🍽️', name: 'Ribs of Vienna', time: '20:00', desc: '저녁 (예약 완료)' },
+          { lat: 48.2038, lng: 16.3794, icon: '🚶', name: 'Stadtpark 산책', time: '21:00~', desc: '숙소 주변 가벼운 산책 (선택)' },
+        ]
+      },
+      {
+        id: 2, label: 'D2', date: '3/7 (토)', title: 'Vienna 관광',
+        color: dayColors[1],
+        center: [48.203, 16.372], zoom: 15,
+        points: [
+          { lat: 48.2084, lng: 16.3731, icon: '⛪', name: '슈테판 대성당', time: '09:00–10:30', desc: '1.5시간 여유 관람' },
+          { lat: 48.2107, lng: 16.3737, icon: '⏰', name: '앙커우어 인형시계', time: '11:00', desc: 'Hoher Markt, 인형 퍼레이드' },
+          { lat: 48.2094, lng: 16.3748, icon: '🍽️', name: 'Figlmüller', time: '11:30–12:30', desc: '점심 (예약 완료 ✅)' },
+          { lat: 48.2059, lng: 16.3661, icon: '📚', name: '국립도서관 Prunksaal', time: '12:50–13:25', desc: '바로크 대홀' },
+          { lat: 48.2068, lng: 16.3656, icon: '🏛️', name: '호프부르크 왕궁', time: '13:45–15:20', desc: '시시 박물관 + 황실 아파트' },
+          { lat: 48.2014, lng: 16.3675, icon: '☕', name: 'Café Museum', time: '15:30', desc: '디저트 (동선 최적)' },
+          { lat: 48.1914, lng: 16.3808, icon: '🖼️', name: 'Upper Belvedere', time: '16:00–18:00', desc: '클림트 〈키스〉 / €22.50' },
+          { lat: 48.2005, lng: 16.3787, icon: '🍽️', name: 'Gmoa Keller', time: '18:15–19:30', desc: '저녁 추천 (동선 최적)' },
+        ]
+      },
+      {
+        id: 3, label: 'D3', date: '3/8 (일)', title: 'Vienna→Salzburg',
+        color: dayColors[2],
+        center: [47.95, 14.5], zoom: 7,
+        points: [
+          { lat: 48.2062, lng: 16.3829, icon: '🏨', name: 'Hilton Vienna Park 체크아웃', time: '08:00', desc: 'Express Check-out' },
+          { lat: 48.1853, lng: 16.3768, icon: '🚆', name: 'Wien Hauptbahnhof', time: '09:00–09:57', desc: '아침+기념품+기차 탑승' },
+          { lat: 47.8132, lng: 13.0458, icon: '🚆', name: 'Salzburg Hbf 도착', time: '12:49', desc: 'OBB Railjet (2h 52m)' },
+          { lat: 47.8141, lng: 13.0401, icon: '🏨', name: 'Villa Elisa', time: '13:05', desc: 'Jahnstraße 14 / 짐 맡기기 (체크인 14:00)' },
+          { lat: 47.8059, lng: 13.0358, icon: '🍽️', name: 'Bärenwirt', time: '13:45', desc: '점심 추천 (1663년 전통)' },
+          { lat: 47.8000, lng: 13.0436, icon: '🎵', name: '모차르트 생가', time: '14:40–15:00', desc: 'Getreidegasse / 20분 핵심 관람' },
+          { lat: 47.7964, lng: 13.0460, icon: '🏰', name: '호엔잘츠부르크 요새', time: '15:00–17:00', desc: 'FestungsBahn / 관람 ~1h 45m' },
+          { lat: 47.8055, lng: 13.0332, icon: '🍽️', name: 'Augustiner Bräustübl', time: '18:00', desc: '저녁 추천 (1621년 양조장)' },
+        ]
+      },
+      {
+        id: 4, label: 'D4', date: '3/9 (월)', title: '키츠슈타인호른 & 첼암제',
+        color: dayColors[3],
+        center: [47.5, 13.0], zoom: 9,
+        points: [
+          { lat: 47.8153, lng: 13.0438, icon: '🚗', name: 'SIXT 렌트카 픽업', time: '09:20', desc: 'Sixt Autovermietung Salzburg City (Wyndham Grand Hotel)' },
+          { lat: 47.2292, lng: 12.7266, icon: '⛷️', name: 'Kitzsteinhorn (TOP OF SALZBURG)', time: '10:50–14:30', desc: '해발 3,029m 전망대 / €59' },
+          { lat: 47.3233, lng: 12.7969, icon: '🚶', name: 'Zell am See (첼암제)', time: '15:30–16:50', desc: '호수 산책로 + 구시가지' },
+          { lat: 47.8153, lng: 13.0438, icon: '🚗', name: 'Salzburg 복귀', time: '18:45', desc: 'SIXT 렌트카 위치로 복귀 (~1h 40m)' },
+          { lat: 47.8002, lng: 13.0420, icon: '🍽️', name: 'Zum Fidelen Affen', time: '19:15', desc: '저녁 추천 (전통 Beisl)' },
+        ]
+      },
+      {
+        id: 5, label: 'D5', date: '3/10 (화)', title: '할슈타트 & 다흐슈타인',
+        color: dayColors[4],
+        center: [47.5, 13.5], zoom: 10,
+        points: [
+          { lat: 47.8153, lng: 13.0438, icon: '🚗', name: 'Salzburg 출발', time: '07:30', desc: 'SIXT 렌트카 → 할슈타트까지 ~1.5h' },
+          { lat: 47.5551, lng: 13.6452, icon: '🅿️', name: '할슈타트 P2 주차장', time: '09:00', desc: '터널 주차장' },
+          { lat: 47.5622, lng: 13.6493, icon: '📸', name: '할슈타트 관광', time: '09:35–11:30', desc: '전망대 · 마르크트 광장 · 호수' },
+          { lat: 47.5615, lng: 13.6487, icon: '🍽️', name: 'Bräugasthof Hallstatt', time: '11:30–12:20', desc: '점심 (호수 뷰)' },
+          { lat: 47.5355, lng: 13.7177, icon: '🏔️', name: '파이브핑거스 (다흐슈타인)', time: '13:00–15:30', desc: '케이블카 + 파노라마 뷰' },
+          { lat: 47.8153, lng: 13.0438, icon: '🚗', name: 'Salzburg 복귀 + 렌트카 반납', time: '17:50', desc: 'SIXT Autovermietung Salzburg City 반납' },
+          { lat: 47.8055, lng: 13.0332, icon: '🍽️', name: 'Augustiner Bräustübl', time: '19:00', desc: '저녁 추천' },
+        ]
+      },
+      {
+        id: 6, label: 'D6', date: '3/11 (수)', title: 'Salzburg→Prague 이동',
+        color: dayColors[5],
+        center: [49.0, 14.5], zoom: 7,
+        points: [
+          { lat: 47.8141, lng: 13.0401, icon: '🏨', name: 'Villa Elisa 체크아웃', time: '09:00', desc: 'Jahnstraße 14 / 기차 대비 일찍 출발' },
+          { lat: 47.8132, lng: 13.0458, icon: '🚆', name: 'Salzburg Hbf', time: '10:07', desc: 'OBB Railjet → Wien' },
+          { lat: 48.1853, lng: 16.3768, icon: '🍽️', name: 'Wien Hbf (환승/점심)', time: '12:32–14:10', desc: '역 내 식당가' },
+          { lat: 50.0832, lng: 14.4348, icon: '🚆', name: 'Praha hl.n. 도착', time: '18:23', desc: 'OBB (4h 13m) / €14.30' },
+          { lat: 50.0859, lng: 14.4087, icon: '🏨', name: 'Archibald At The Charles Bridge', time: '18:30', desc: 'Na Kampě 508/15, Malá Strana' },
+          { lat: 50.0907, lng: 14.4258, icon: '🍽️', name: 'Lokál Dlouhááá', time: '19:30', desc: '저녁 추천 (체코 전통)' },
+        ]
+      },
+      {
+        id: 7, label: 'D7', date: '3/12 (목)', title: 'Prague 핵심 관광',
+        color: dayColors[6],
+        center: [50.088, 14.41], zoom: 15,
+        points: [
+          { lat: 50.0861, lng: 14.3892, icon: '📚', name: '스트라호프 수도원', time: '09:00–10:00', desc: '신학의 방 / 철학의 방 / 150 CZK' },
+          { lat: 50.0893, lng: 14.3961, icon: '☕', name: '프라하성 앞 스타벅스', time: '10:00', desc: '커피 + 기념품' },
+          { lat: 50.0911, lng: 14.4013, icon: '🏰', name: '프라하 성 (Main Circuit)', time: '10:15–12:30', desc: '성비투스 대성당 · 황금 소로 / 450 CZK' },
+          { lat: 50.0880, lng: 14.4010, icon: '🚶', name: '네루도바 거리 (하산)', time: '12:30–13:00', desc: '내리막 산책' },
+          { lat: 50.0848, lng: 14.4043, icon: '🍽️', name: 'Lokál U Bílé kuželky', time: '13:00–13:45', desc: '점심 추천 (체코 전통)' },
+          { lat: 50.0867, lng: 14.4040, icon: '🏛️', name: '말라 스트라나', time: '13:45–14:30', desc: '발트슈타인 궁전 · 존레논벽' },
+          { lat: 50.0865, lng: 14.4113, icon: '🌉', name: '카를교', time: '14:30–15:15', desc: '도보 횡단 (서→동)' },
+          { lat: 50.0875, lng: 14.4213, icon: '🏙️', name: '구시가지 광장', time: '15:15–17:00', desc: '천문시계 · 틴 교회 · 하벨시장' },
+          { lat: 50.0907, lng: 14.4258, icon: '🍽️', name: 'Lokál Dlouhááá', time: '19:00', desc: '저녁 추천' },
+        ]
+      },
+      {
+        id: 8, label: 'D8', date: '3/13 (금)', title: 'Dresden 당일치기',
+        color: dayColors[7],
+        center: [50.6, 14.0], zoom: 8,
+        points: [
+          { lat: 50.0832, lng: 14.4348, icon: '🚆', name: 'Praha hl.n. 출발', time: '10:31', desc: 'EC → Dresden / €18.99' },
+          { lat: 51.0401, lng: 13.7325, icon: '🚆', name: 'Dresden Hbf 도착', time: '12:50', desc: '' },
+          { lat: 51.0519, lng: 13.7414, icon: '⛪', name: '① 프라우엔 교회', time: '13:15 / 14:10', desc: '외관→점심→내부 순서' },
+          { lat: 51.0515, lng: 13.7400, icon: '🍽️', name: 'Augustiner an der Frauenkirche', time: '13:25–14:10', desc: '점심 (바이에른식 맥주홀)' },
+          { lat: 51.0530, lng: 13.7420, icon: '🌅', name: '② 브륄의 테라스', time: '14:30–14:50', desc: '"유럽의 발코니" 엘베강 조망' },
+          { lat: 51.0525, lng: 13.7388, icon: '🎨', name: '③ 군주의 행렬', time: '14:50–15:05', desc: '101m 도자기 벽화' },
+          { lat: 51.0530, lng: 13.7336, icon: '🏛️', name: '④ 츠빙거 궁전', time: '15:05–16:15', desc: '바로크 건축 / 박물관 €14' },
+          { lat: 51.0542, lng: 13.7354, icon: '🎭', name: '⑤ 젬퍼 오페라', time: '16:15–16:40', desc: '외관 감상' },
+          { lat: 51.0401, lng: 13.7325, icon: '🚆', name: 'Dresden Hbf 복귀', time: '17:10', desc: 'EC → Praha / €19.99' },
+        ]
+      },
+      {
+        id: 9, label: 'D9', date: '3/14 (토)', title: 'Prague 여유 관광',
+        color: dayColors[8],
+        center: [50.082, 14.42], zoom: 14,
+        points: [
+          { lat: 50.0647, lng: 14.4198, icon: '🏰', name: '비세흐라드', time: '09:00–11:00', desc: '성벽 산책 · 드보르작 묘지' },
+          { lat: 50.0726, lng: 14.4147, icon: '🛒', name: '나플라브카 파머스 마켓', time: '11:00–12:00', desc: '토요일 한정 강변 마켓' },
+          { lat: 50.0790, lng: 14.4070, icon: '🍽️', name: 'Café Savoy', time: '12:15–13:00', desc: '점심 추천 (1893년 네오르네상스)' },
+          { lat: 50.0960, lng: 14.4213, icon: '🌳', name: '레트나공원', time: '13:15–14:30', desc: '파노라마 뷰 + Beer Garden' },
+          { lat: 50.0840, lng: 14.4200, icon: '🛍️', name: '하벨시장 + 쇼핑', time: '14:30–16:30', desc: '기념품 · Na Příkopě' },
+          { lat: 50.0836, lng: 14.4177, icon: '🍽️', name: 'U Medvídků', time: '17:30', desc: '저녁 추천 (1466년, X-Beer 33)' },
+        ]
+      },
+      {
+        id: 10, label: 'D10', date: '3/15 (일)', title: 'Český Krumlov 당일치기',
+        color: dayColors[9],
+        center: [49.4, 14.4], zoom: 8,
+        points: [
+          { lat: 50.0832, lng: 14.4348, icon: '🚆', name: 'Praha hl.n. 출발', time: '09:21', desc: '직행 (2h 28m) / 255 CZK' },
+          { lat: 48.8223, lng: 14.3173, icon: '🚆', name: 'Český Krumlov역 도착', time: '11:49', desc: '도보 ~20분 → 구시가지' },
+          { lat: 48.8108, lng: 14.3155, icon: '🍽️', name: 'Krčma Šatlava', time: '12:15–13:00', desc: '점심 (중세 지하감옥 컨셉)' },
+          { lat: 48.8095, lng: 14.3128, icon: '📸', name: '전망대', time: '13:00–13:15', desc: '블타바 강 + 마을 전경' },
+          { lat: 48.8128, lng: 14.3148, icon: '🏰', name: '체스키 크룸로프 성', time: '13:15–15:00', desc: '성 탑 · 박물관 · 정원 / 50 CZK' },
+          { lat: 48.8110, lng: 14.3170, icon: '🚶', name: '강변 + 구시가지', time: '15:00–16:00', desc: '자유시간 · 기념품' },
+          { lat: 48.8223, lng: 14.3173, icon: '🚆', name: 'Český Krumlov역 출발', time: '16:59', desc: '→ Praha 19:39 (경유)' },
+        ]
+      },
+      {
+        id: 11, label: 'D11', date: '3/16 (월)', title: 'Prague 출발 ✈️',
+        color: dayColors[10],
+        center: [50.07, 14.42], zoom: 13,
+        points: [
+          { lat: 50.0859, lng: 14.4087, icon: '🏨', name: 'Archibald At The Charles Bridge 체크아웃', time: '10:00', desc: 'Na Kampě 508/15' },
+          { lat: 50.0865, lng: 14.4113, icon: '🌉', name: '프라하 자유시간', time: '10:15–11:30', desc: '카를교 재방문 · 마지막 산책' },
+          { lat: 50.0875, lng: 14.4213, icon: '🍽️', name: '점심', time: '11:30–12:30', desc: 'Café Imperial or Lokál' },
+          { lat: 50.1008, lng: 14.2600, icon: '✈️', name: 'Václav Havel 공항 (PRG)', time: '14:30', desc: '면세점 · 체크인 16:30 · 출발 18:30' },
+        ]
+      }
+    ];
 
     // ── Layers ──
     const layerGroups = {};
@@ -1086,6 +919,9 @@
     let locationCircle = null;
     let watchId = null;
     let isTracking = false;
+
+    // Global marker registry for overlap detection
+    const allMarkers = []; // { marker, pt, day, popupHtml }
 
     // Custom icon factory
     function createIcon(emoji, color) {
@@ -1104,19 +940,73 @@
       });
     }
 
-    // Create small dot icon for "all view"
-    function createDotIcon(color) {
-      return L.divIcon({
-        html: `<div style="
-      background: ${color}; width: 10px; height: 10px; border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.6);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-    "></div>`,
-        className: '',
-        iconSize: [10, 10],
-        iconAnchor: [5, 5],
-        popupAnchor: [0, -8]
+    // Build detail popup HTML
+    function buildDetailHtml(pt, day) {
+      const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${pt.lat},${pt.lng}`;
+      return `
+      <div>
+        <div class="popup-day" style="background:${day.color}; color:#000;">
+          ${day.label} · ${day.date}
+        </div>
+        <div class="popup-time">${pt.time}</div>
+        <div class="popup-title">${pt.icon} ${pt.name}</div>
+        ${pt.desc ? `<div class="popup-desc">${pt.desc}</div>` : ''}
+        <a class="popup-link" href="${mapsUrl}" target="_blank" rel="noopener">📍 Google Maps에서 보기</a>
+      </div>
+    `;
+    }
+
+    // Find overlapping markers near a given pixel point
+    function findNearbyMarkers(targetMarker, threshold) {
+      const targetPx = map.latLngToContainerPoint(targetMarker.getLatLng());
+      const nearby = [];
+      allMarkers.forEach(entry => {
+        if (!map.hasLayer(entry.marker)) return;
+        const px = map.latLngToContainerPoint(entry.marker.getLatLng());
+        const dist = targetPx.distanceTo(px);
+        if (dist < threshold) {
+          nearby.push(entry);
+        }
       });
+      return nearby;
+    }
+
+    // Build list popup HTML for overlapping markers
+    function buildListHtml(entries) {
+      const items = entries.map((entry, idx) => `
+        <li class="overlap-item" onclick="showOverlapDetail(${idx})">
+          <div class="overlap-item-icon" style="background:${entry.day.color};">${entry.pt.icon}</div>
+          <div class="overlap-item-info">
+            <div class="overlap-item-name">${entry.pt.name}</div>
+            <div class="overlap-item-meta">
+              <span class="overlap-item-day" style="background:${entry.day.color}; color:#000;">${entry.day.label}</span>
+              <span>${entry.pt.time}</span>
+            </div>
+          </div>
+        </li>
+      `).join('');
+      return `
+        <div>
+          <div class="overlap-list-title">📍 이 위치의 일정 (${entries.length}개)</div>
+          <ul class="overlap-list">${items}</ul>
+        </div>
+      `;
+    }
+
+    // Temp storage for current overlap context
+    let currentOverlapEntries = [];
+    let currentOverlapLatLng = null;
+
+    function showOverlapDetail(idx) {
+      const entry = currentOverlapEntries[idx];
+      if (!entry) return;
+      map.closePopup();
+      setTimeout(() => {
+        L.popup({ maxWidth: 260 })
+          .setLatLng(currentOverlapLatLng)
+          .setContent(entry.popupHtml)
+          .openOn(map);
+      }, 50);
     }
 
     // ── Build Layers ──
@@ -1129,20 +1019,31 @@
           icon: createIcon(pt.icon, day.color)
         });
 
-        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${pt.lat},${pt.lng}`;
-        const popupHtml = `
-      <div>
-        <div class="popup-day" style="background:${day.color}; color:#000;">
-          ${day.label} · ${day.date}
-        </div>
-        <div class="popup-time">${pt.time}</div>
-        <div class="popup-title">${pt.icon} ${pt.name}</div>
-        ${pt.desc ? `<div class="popup-desc">${pt.desc}</div>` : ''}
-        <a class="popup-link" href="${mapsUrl}" target="_blank" rel="noopener">📍 Google Maps에서 보기</a>
-      </div>
-    `;
-        marker.bindPopup(popupHtml, {
-          maxWidth: 260
+        const popupHtml = buildDetailHtml(pt, day);
+
+        // Register marker globally for overlap detection
+        allMarkers.push({ marker, pt, day, popupHtml });
+
+        // Intercept click for overlap detection
+        marker.on('click', function (e) {
+          L.DomEvent.stopPropagation(e);
+          const nearby = findNearbyMarkers(marker, 30);
+
+          if (nearby.length > 1) {
+            // Multiple markers overlap → show list
+            currentOverlapEntries = nearby;
+            currentOverlapLatLng = marker.getLatLng();
+            L.popup({ maxWidth: 280, className: 'overlap-popup' })
+              .setLatLng(marker.getLatLng())
+              .setContent(buildListHtml(nearby))
+              .openOn(map);
+          } else {
+            // Single marker → show detail directly
+            L.popup({ maxWidth: 260 })
+              .setLatLng(marker.getLatLng())
+              .setContent(popupHtml)
+              .openOn(map);
+          }
         });
 
         // Permanent label below marker
@@ -1156,7 +1057,6 @@
         });
 
         marker.addTo(group);
-
         coords.push([pt.lat, pt.lng]);
       });
 
@@ -1191,47 +1091,31 @@
     // ── Show Day ──
     function showDay(dayId) {
       activeDay = dayId;
-
-      // Remove all layers
       Object.values(layerGroups).forEach(g => map.removeLayer(g));
-
-      // Add selected day
       layerGroups[dayId].addTo(map);
 
-      // Fit bounds
       const day = days.find(d => d.id === dayId);
       const bounds = routeLines[dayId].getBounds();
       map.fitBounds(bounds, { padding: [60, 60], maxZoom: day.zoom });
 
-      // Update UI
       document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
       document.querySelector(`.day-btn[data-day="${dayId}"]`).classList.add('active');
       document.getElementById('allBtn').classList.remove('active');
-
       updateLegend(dayId);
     }
 
     // ── Show All ──
     function showAll() {
       activeDay = null;
-
-      // Remove all detailed layers
       Object.values(layerGroups).forEach(g => map.removeLayer(g));
+      days.forEach(day => { layerGroups[day.id].addTo(map); });
 
-      // Add all with smaller markers
-      days.forEach(day => {
-        layerGroups[day.id].addTo(map);
-      });
-
-      // Fit all
       const allCoords = [];
       days.forEach(day => day.points.forEach(pt => allCoords.push([pt.lat, pt.lng])));
       map.fitBounds(allCoords, { padding: [50, 50] });
 
-      // Update UI
       document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('allBtn').classList.add('active');
-
       updateLegend(null);
     }
 
@@ -1259,14 +1143,11 @@
     // ── My Location ──
     function toggleLocation() {
       const btn = document.getElementById('locBtn');
-
       if (isTracking) {
-        // Stop tracking
         if (watchId !== null) navigator.geolocation.clearWatch(watchId);
         if (locationMarker) map.removeLayer(locationMarker);
         if (locationCircle) map.removeLayer(locationCircle);
-        locationMarker = null;
-        locationCircle = null;
+        locationMarker = null; locationCircle = null;
         isTracking = false;
         btn.classList.remove('tracking');
         btn.innerHTML = '📍';
@@ -1287,7 +1168,6 @@
           const lat = pos.coords.latitude;
           const lng = pos.coords.longitude;
           const acc = pos.coords.accuracy;
-
           if (locationMarker) {
             locationMarker.setLatLng([lat, lng]);
             locationCircle.setLatLng([lat, lng]).setRadius(acc);
@@ -1305,15 +1185,10 @@
               }),
               zIndexOffset: 2000
             }).addTo(map).bindPopup('📍 내 위치');
-
             locationCircle = L.circle([lat, lng], {
-              radius: acc,
-              color: '#4285f4',
-              fillColor: '#4285f4',
-              fillOpacity: 0.1,
-              weight: 1
+              radius: acc, color: '#4285f4', fillColor: '#4285f4',
+              fillOpacity: 0.1, weight: 1
             }).addTo(map);
-
             map.setView([lat, lng], 15);
           }
         },
