@@ -139,7 +139,7 @@ Salzburg Hbf → 숙소 짐 맡기기 → 점심 → 구시가지 핵심 2-3곳 
 
 **09:38–12:08 — 🚆 빈→잘츠부르크**
 
-- [Westbahn](https://westbahn.at) #908 (2h 30m) / Wien Westbahnhof 출발 / 인당 €38.99
+- [Westbahn](https://westbahn.at) #908 (2h 30m) / Wien Westbahnhof 출발 / 예약 완료: 총 €77.98 (Westbahn 앱)
 
 **12:25–13:00 — 🏨 숙소 짐 맡기기**
 
@@ -350,7 +350,7 @@ Salzburg Hbf → 숙소 짐 맡기기 → 점심 → 구시가지 핵심 2-3곳 
 
 **10:11–13:03 — 🚆 잘츠부르크→빈**
 
-- ÖBB Railjet (2h 52m) / 인당 €29.90
+- IC 641 (2h 52m) / 예약 완료: 총 €65.80 (ÖBB 앱)
 
 **13:03–15:00 — 🍽️ 빈 중앙역 점심 + 여유시간**
 
@@ -362,7 +362,7 @@ Salzburg Hbf → 숙소 짐 맡기기 → 점심 → 구시가지 핵심 2-3곳 
 
 - RJX 56 직행 (4h 13m)
 - Wien Hbf Platform 10 → Praha hl.n.
-- 인당 €14.30
+- 예약 완료: 총 €34.60 (ÖBB 앱)
 
 **19:30–20:00 — 🏨 체크인**
 
@@ -460,7 +460,7 @@ Salzburg Hbf → 숙소 짐 맡기기 → 점심 → 구시가지 핵심 2-3곳 
 
 **10:31–12:50 — 🚆 프라하→드레스덴**
 
-- [cd.cz](https://www.cd.cz/en/) EC (EuroCity) (2h 19m) / 인당 620 CZK (€25.63)
+- [cd.cz](https://www.cd.cz/en/) RJ 382 (10:31–12:50) / 결제 완료 (cd.cz 앱 예매) / 총 1290 CZK
 
 **13:00–13:15 — 🚶 역→구시가지**
 
@@ -506,11 +506,18 @@ Salzburg Hbf → 숙소 짐 맡기기 → 점심 → 구시가지 핵심 2-3곳 
 
 **17:10–19:27 — 🚆 드레스덴→프라하**
 
-- [cd.cz](https://www.cd.cz/en/) RJ 177 + R 695 (3h) / 인당 645 CZK
-- 📌 **티켓:** Praha hl.n.까지 구매, 실제 탑승 경로는 아래 참고
-- 🚆 17:10–19:15 Dresden Hbf → 프라하-홀레쇼비체(Praha-Holešovice) — RJ 177
-- 🚶 19:15–19:22 홀레쇼비체 역 → 메트로역 도보 이동 (약 6분)
-- 🚇 19:22–19:27 메트로 C선 → Praha hl.n. 도착
+- [cd.cz](https://www.cd.cz/en/) RJ 117 + R 695 / 결제 완료 (cd.cz 앱 예매) / 총 1290 CZK
+- 📌 **예약 내역:**
+- 🚆 17:10–19:15 Dresden Hbf → Praha-Holešovice — RJ 117
+- 🚆 20:00–20:10 Praha-Holešovice → Praha hl.n. — R 695
+- ✅ 기존 계획대로 Holešovice 하차 후 메트로 C로 Praha hl.n. 이동 가능
+- 📍 **메트로 상세 이동:**
+- 🚆 19:15 Praha-Holesovice 도착
+- 🚶 7min approx. 144m Walk (approx. 6min)
+- 🚇 19:22 Praha Nadrazi Holesovice (M) → nach Praha Haje (M)
+- 🚇 19:23 - 19:24 Praha Vltavská (M)
+- 🚇 19:25 - 19:26 Praha Florenc (M-C)
+- 🚇 19:27 Praha Hlavni Nadrazi (M)
 - ⚠️ 메트로 구간은 **72시간 교통권(330 CZK)** 사용 — 3/12 첫 사용 시 3/14까지 유효, 3/13도 커버됨
 
 **19:45 이후 — 🍽️ 저녁**

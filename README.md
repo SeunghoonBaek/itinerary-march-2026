@@ -67,7 +67,7 @@
 | 08:20–08:45 | 🚕 Wien Westbahnhof 이동 | 택시/Bolt 또는 U3 메트로 → 비엔나 서역(Westbahnhof) |
 | 08:45–09:00 | 🛍️ 기념품 | Starbucks Wien Westbahnhof — 에스프레소 컵 구매 |
 | 09:00–09:30 | 🥐 아침 | **A)** Bäckerei Ströck (05:00-) — 빵/샌드위치 빠르고 무난<br>**B)** Bäckerei Anker (05:00-) — 로컬 체인<br>**C)** Starbucks (06:00-)<br>**D)** Konditorei Oberlaa (08:00-) — 디저트 강점 |
-| 09:38–12:08 | 🚆 빈→잘츠부르크 | [Westbahn](https://westbahn.at) #908 (2h 30m) / Wien Westbahnhof 출발 / 인당 €38.99 |
+| 09:38–12:08 | 🚆 빈→잘츠부르크 | [Westbahn](https://westbahn.at) #908 (2h 30m) / Wien Westbahnhof 출발 / 예약 완료: 총 €77.98 (Westbahn 앱) |
 | 12:25–13:00 | 🏨 숙소 짐 맡기기 | [Villa Elisa](https://www.agoda.com/ko-kr/villa-elisa/hotel/all/salzburg-at.html) |
 | 13:00–13:50 | 🍽️ 점심 | **A)** Bärenwirt ★최추천★ — 1663년 전통, Backhendl 유명 / 11:00–23:00 / ⚠️ 예약 권장<br>**B)** Café Bazar — 잘츠흐 강변 클래식 카페 / 09:00–18:00<br>**후보:** Stiftskeller St. Peter (€25–40) · Triangel (€15–25) |
 | 14:40–15:00 | 🏛️ 구시가지 + 모차르트 생가 | Getreidegasse 이동 → 모차르트 생가 **20분 핵심 관람** (외관+1층 하이라이트)<br>운영: 매일 09:00–17:30 / 마지막 입장 17:00 / €15 |
@@ -152,9 +152,9 @@
 | 08:00–08:30 | 🥐 아침 | Salzburg Hbf 역 내: Ströck / Anker / Le Crobag |
 | 09:00–09:30 | 🏨 체크아웃 | Villa Elisa — ⚠️ 공식 체크아웃 10:00이나 기차 대비 일찍 출발 (전날 밤 패킹 완료 필수) |
 | 09:30–09:50 | 🚶 역 이동 | Villa Elisa → Salzburg Hbf (늦어도 **09:50 역 도착**) |
-| 10:11–13:03 | 🚆 잘츠부르크→빈 | ÖBB Railjet (2h 52m) / 인당 €29.90 |
+| 10:11–13:03 | 🚆 잘츠부르크→빈 | IC 641 (2h 52m) / 예약 완료: 총 €65.80 (ÖBB 앱) |
 | 13:03–15:00 | 🍽️ 빈 중앙역 점심 + 여유시간 | Wien Hbf BahnhofCity 내 식당가 — L'Osteria, HENRY 등<br>BILLA에서 간식 구매 · 카페 휴식<br>15:10 출발 대비 10분 전 플랫폼 이동 |
-| 15:10–19:23 | 🚆 빈→프라하 | RJX 56 직행 (4h 13m)<br>Wien Hbf Platform 10 → Praha hl.n.<br>인당 €14.30 |
+| 15:10–19:23 | 🚆 빈→프라하 | RJX 56 직행 (4h 13m)<br>Wien Hbf Platform 10 → Praha hl.n.<br>예약 완료: 총 €34.60 (ÖBB 앱) |
 | 19:30–20:00 | 🏨 체크인 | Praha hl.n. → Archibald At The Charles Bridge 이동 (메트로/트램 또는 택시) |
 | 20:15–21:15 | 🍽️ 저녁 | **A)** Lokál Dlouhááá — 체코 전통 + 탱크 필스너<br>**B)** Kantýna — 숙성 스테이크, 바츨라프 광장 근처<br>**C)** 숙소 근처 간단히 |
 | 21:15 이후 | 🌃 야경 (선택) | 카를교/구시가지 야경 — 컨디션 좋으면 |
@@ -196,7 +196,7 @@
 
 | 시간 | 활동 | 상세 |
 |:---|:---|:---|
-| 10:31–12:50 | 🚆 프라하→드레스덴 | [cd.cz](https://www.cd.cz/en/) EC (EuroCity) (2h 19m) / 인당 620 CZK (€25.63) |
+| 10:31–12:50 | 🚆 프라하→드레스덴 | [cd.cz](https://www.cd.cz/en/) RJ 382 (10:31–12:50) / 결제 완료 (cd.cz 앱 예매) / 총 1290 CZK |
 | 13:00–13:15 | 🚶 역→구시가지 | 도보 약 15분 (Prager Str. 보행자 거리 경유) |
 | 13:15–13:25 | ① ⛪ 프라우엔 교회 (외관) | 2차 대전 폭파 후 복구된 상징적 건물 — 사진 촬영<br>⚠️ 금요일: 10:00–11:30, **13:00–17:30** (11:30–13:00 폐쇄) → 외관 먼저 |
 | 13:25–14:10 | 🍽️ 점심 | **A)** Augustiner an der Frauenkirche ★최추천★ — 바이에른식 맥주홀 / €15–25<br>**B)** Pulverturm — 중세 화약탑 내부 레스토랑<br>**C)** Schützengarten — 로컬 비어가든 스타일<br>→ 모두 프라우엔 교회 도보 3분 이내 |
@@ -206,7 +206,7 @@
 | 15:05–16:15 | ④ 🏛️ 츠빙거 궁전 | 바로크 건축 걸작, 중정+분수 감상<br>내부: 도자기 박물관 or 구거장 회화관 택 1 (시간 없으면 중정만, 무료)<br>운영: 10:00–18:00 / 박물관 €14(콤비) |
 | 16:15–16:40 | ⑤ 🎭 젬퍼 오페라 하우스 | 외관 감상 + 테아터 광장 사진 (츠빙거 바로 옆) |
 | 16:40–17:00 | 🚶 역 복귀 | 도보 약 15–20분 |
-| 17:10–19:27 | 🚆 드레스덴→프라하 | [cd.cz](https://www.cd.cz/en/) RJ 177 + R 695 (3h) / 인당 645 CZK<br>📌 **티켓:** Praha hl.n.까지 구매, 실제 탑승 경로는 아래 참고<br>🚆 17:10–19:15 Dresden Hbf → 프라하-홀레쇼비체(Praha-Holešovice) — RJ 177<br>🚶 19:15–19:22 홀레쇼비체 역 → 메트로역 도보 이동 (약 6분)<br>🚇 19:22–19:27 메트로 C선 → Praha hl.n. 도착<br>⚠️ 메트로 구간은 **72시간 교통권(330 CZK)** 사용 — 3/12 첫 사용 시 3/14까지 유효, 3/13도 커버됨 |
+| 17:10–19:27 | 🚆 드레스덴→프라하 | [cd.cz](https://www.cd.cz/en/) RJ 117 + R 695 / 결제 완료 (cd.cz 앱 예매) / 총 1290 CZK<br>📌 **예약 내역:**<br>🚆 17:10–19:15 Dresden Hbf → Praha-Holešovice — RJ 117<br>🚆 20:00–20:10 Praha-Holešovice → Praha hl.n. — R 695<br>✅ 기존 계획대로 Holešovice 하차 후 메트로 C로 Praha hl.n. 이동 가능<br>📍 **메트로 상세 이동:**<br>🚆 19:15 Praha-Holesovice 도착<br>🚶 7min approx. 144m Walk (approx. 6min)<br>🚇 19:22 Praha Nadrazi Holesovice (M) → nach Praha Haje (M)<br>🚇 19:23 - 19:24 Praha Vltavská (M)<br>🚇 19:25 - 19:26 Praha Florenc (M-C)<br>🚇 19:27 Praha Hlavni Nadrazi (M)<br>⚠️ 메트로 구간은 **72시간 교통권(330 CZK)** 사용 — 3/12 첫 사용 시 3/14까지 유효, 3/13도 커버됨 |
 | 19:45 이후 | 🍽️ 저녁 | **A)** Lokál Dlouhááá — 3/12 못 갔으면 이날<br>**B)** Eska — 미슐랭 빕구르망<br>**C)** 숙소 근처 간단히 |
 
 ---
