@@ -196,6 +196,133 @@
       border-color: rgba(99, 132, 255, 0.3);
     }
 
+    /* Point navigator */
+    .point-nav {
+      margin: 0 8px 10px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+    }
+
+    .point-nav-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .point-nav-title {
+      font-size: 11px;
+      color: #ddd;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .point-nav-index {
+      font-size: 10px;
+      color: #8fa8ff;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .point-nav-name {
+      font-size: 12px;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+
+    .point-nav-meta {
+      font-size: 10.5px;
+      color: #9aa3b3;
+      line-height: 1.45;
+      min-height: 28px;
+      margin-bottom: 8px;
+    }
+
+    .point-nav-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .point-nav-btn {
+      border: 1px solid rgba(99, 132, 255, 0.35);
+      background: rgba(99, 132, 255, 0.14);
+      color: #dbe4ff;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 7px 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .point-nav-btn:hover:enabled {
+      background: rgba(99, 132, 255, 0.25);
+      color: #fff;
+    }
+
+    .point-nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.04);
+      color: #8a8a8a;
+    }
+
+    .collapsed-nav {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      width: max-content;
+      max-width: 300px;
+      background: rgba(15, 15, 30, 0.92);
+      backdrop-filter: blur(16px);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      padding: 6px;
+    }
+
+    .collapsed-nav.visible {
+      display: flex;
+    }
+
+    body.collapsed-nav-on .legend {
+      bottom: 84px;
+    }
+
+    .collapsed-nav-status {
+      min-width: 104px;
+      max-width: 110px;
+      text-align: center;
+      font-size: 10.5px;
+      color: #c5d2ff;
+      font-weight: 600;
+      padding: 0 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .collapsed-point-btn {
+      min-width: 72px;
+      padding: 6px 8px;
+      font-size: 10.5px;
+    }
+
     /* Bottom buttons row */
     .bottom-btns {
       position: fixed;
@@ -562,6 +689,95 @@
       border-bottom-color: rgba(15, 15, 30, 0.85) !important;
     }
 
+    .custom-marker {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+    }
+
+    .marker-core {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background: var(--marker-color);
+      border: 2px solid rgba(255, 255, 255, 0.82);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .marker-order {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: rgba(10, 12, 20, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .marker-start {
+      position: absolute;
+      left: 50%;
+      bottom: -13px;
+      transform: translateX(-50%);
+      font-size: 8px;
+      font-weight: 800;
+      color: #ffe066;
+      letter-spacing: 0.2px;
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+      pointer-events: none;
+    }
+
+    .custom-marker.start-point .marker-core {
+      border-color: rgba(255, 224, 102, 0.95);
+      box-shadow: 0 0 0 1px rgba(255, 224, 102, 0.35), 0 3px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .custom-marker.start-point .marker-order {
+      background: #ffe066;
+      color: #222;
+      border-color: rgba(0, 0, 0, 0.25);
+    }
+
+    .custom-marker.active-point .marker-core {
+      transform: scale(1.18);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4), 0 8px 20px rgba(35, 48, 95, 0.55);
+    }
+
+    .custom-marker.active-point::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      animation: markerPulse 1.5s ease-out infinite;
+    }
+
+    @keyframes markerPulse {
+      0% {
+        opacity: 0.9;
+        transform: scale(0.88);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(1.25);
+      }
+    }
+
     .label-time {
       color: #6384ff;
       font-weight: 600;
@@ -603,6 +819,28 @@
         left: 8px;
       }
 
+      .collapsed-nav {
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+        max-width: calc(100vw - 16px);
+        padding: 5px;
+        gap: 4px;
+      }
+
+      .collapsed-nav-status {
+        min-width: 70px;
+        max-width: 78px;
+        font-size: 10px;
+      }
+
+      .collapsed-point-btn {
+        min-width: 64px;
+        font-size: 10px;
+        padding: 6px 6px;
+      }
+
       .legend {
         font-size: 10px;
         padding: 6px 10px;
@@ -610,6 +848,10 @@
         flex-wrap: wrap;
         max-width: 90vw;
         justify-content: center;
+      }
+
+      body.collapsed-nav-on .legend {
+        bottom: 72px;
       }
 
       .bottom-btns {
@@ -646,10 +888,27 @@
     </div>
     <div class="day-list" id="dayList"></div>
     <button class="all-btn" id="allBtn" onclick="showAll()">📍 전체 경로 보기</button>
+    <div class="point-nav" id="pointNav">
+      <div class="point-nav-head">
+        <div class="point-nav-title" id="pointNavTitle">포인트 네비게이터</div>
+        <div class="point-nav-index" id="pointNavIndex">-</div>
+      </div>
+      <div class="point-nav-name" id="pointNavName">날짜를 선택하면 시작점부터 순서대로 이동할 수 있습니다.</div>
+      <div class="point-nav-meta" id="pointNavMeta">현재 일정 노드는 지도에서 강조 표시됩니다.</div>
+      <div class="point-nav-btns">
+        <button class="point-nav-btn" id="prevPointBtn" onclick="prevPoint()" disabled>◀ 이전 일정</button>
+        <button class="point-nav-btn" id="nextPointBtn" onclick="nextPoint()" disabled>다음 일정 ▶</button>
+      </div>
+    </div>
   </div>
 
   <!-- Floating open button -->
   <button class="open-btn" id="openBtn" onclick="openPanel()">☰</button>
+  <div class="collapsed-nav" id="collapsedNav">
+    <button class="point-nav-btn collapsed-point-btn" id="collapsedPrevBtn" onclick="prevPoint()" disabled>◀ 이전</button>
+    <div class="collapsed-nav-status" id="collapsedNavStatus">날짜 선택 후 사용</div>
+    <button class="point-nav-btn collapsed-point-btn" id="collapsedNextBtn" onclick="nextPoint()" disabled>다음 ▶</button>
+  </div>
 
   <!-- Compass -->
   <div class="compass">
@@ -775,6 +1034,7 @@
         color: dayColors[1],
         center: [48.203, 16.372], zoom: 15,
         points: [
+          { lat: 48.2062, lng: 16.3829, icon: '🏨', name: 'Hilton Vienna Park 출발', time: '08:00–08:20', desc: '아침 식사 장소로 이동' },
           { lat: 48.2084, lng: 16.3731, icon: '⛪', name: '슈테판 대성당', time: '09:00–10:30', desc: '1.5시간 여유 관람' },
           { lat: 48.2107, lng: 16.3737, icon: '⏰', name: '앙커우어 인형시계', time: '11:00', desc: 'Hoher Markt, 인형 퍼레이드' },
           { lat: 48.2094, lng: 16.3748, icon: '🍽️', name: 'Figlmüller', time: '11:30–12:30', desc: '점심 (예약 완료 ✅)' },
@@ -805,6 +1065,7 @@
         color: dayColors[3],
         center: [47.5, 13.0], zoom: 9,
         points: [
+          { lat: 47.8141, lng: 13.0401, icon: '🏨', name: 'Villa Elisa 출발', time: '07:20–07:40', desc: 'SIXT 지점 이동' },
           { lat: 47.8153, lng: 13.0438, icon: '🚗', name: 'SIXT 렌트카 픽업', time: '09:20', desc: 'Sixt Autovermietung Salzburg City (Wyndham Grand Hotel)' },
           { lat: 47.2292, lng: 12.7266, icon: '⛷️', name: 'Kitzsteinhorn (TOP OF SALZBURG)', time: '10:50–14:30', desc: '해발 3,029m 전망대 / €59' },
           { lat: 47.3233, lng: 12.7969, icon: '🚶', name: 'Zell am See (첼암제)', time: '15:30–16:50', desc: '호수 산책로 + 구시가지' },
@@ -817,6 +1078,7 @@
         color: dayColors[4],
         center: [47.5, 13.5], zoom: 10,
         points: [
+          { lat: 47.8141, lng: 13.0401, icon: '🏨', name: 'Villa Elisa 출발', time: '07:10–07:30', desc: '렌트카 탑승 후 Hallstatt 방향 이동' },
           { lat: 47.8153, lng: 13.0438, icon: '🚗', name: 'Salzburg 출발', time: '07:30', desc: 'SIXT 렌트카 → 할슈타트까지 ~1.5h' },
           { lat: 47.5551, lng: 13.6452, icon: '🅿️', name: '할슈타트 P2 주차장', time: '09:00', desc: '터널 주차장' },
           { lat: 47.5622, lng: 13.6493, icon: '📸', name: '할슈타트 관광', time: '09:35–11:30', desc: '전망대 · 마르크트 광장 · 호수' },
@@ -844,6 +1106,7 @@
         color: dayColors[6],
         center: [50.088, 14.41], zoom: 15,
         points: [
+          { lat: 50.0859, lng: 14.4087, icon: '🏨', name: 'Archibald At The Charles Bridge 출발', time: '08:20–08:40', desc: '스트라호프 수도원 이동' },
           { lat: 50.0861, lng: 14.3892, icon: '📚', name: '스트라호프 수도원', time: '09:00–10:00', desc: '신학의 방 / 철학의 방 / 150 CZK' },
           { lat: 50.0893, lng: 14.3961, icon: '☕', name: '프라하성 앞 스타벅스', time: '10:00', desc: '커피 + 기념품' },
           { lat: 50.0911, lng: 14.4013, icon: '🏰', name: '프라하 성 (Main Circuit)', time: '10:15–12:30', desc: '성비투스 대성당 · 황금 소로 / 450 CZK' },
@@ -860,6 +1123,7 @@
         color: dayColors[7],
         center: [50.6, 14.0], zoom: 8,
         points: [
+          { lat: 50.0859, lng: 14.4087, icon: '🏨', name: 'Archibald At The Charles Bridge 출발', time: '09:45–10:10', desc: 'Praha hl.n. 이동' },
           { lat: 50.0832, lng: 14.4348, icon: '🚆', name: 'Praha hl.n. 출발', time: '10:31', desc: 'RJ 382 (10:31–12:50) / 결제 완료 (cd.cz 앱 예매) / 총 1290 CZK' },
           { lat: 51.0401, lng: 13.7325, icon: '🚆', name: 'Dresden Hbf 도착', time: '12:50', desc: '' },
           { lat: 51.0519, lng: 13.7414, icon: '⛪', name: '① 프라우엔 교회', time: '13:15 / 14:10', desc: '외관→점심→내부 순서' },
@@ -878,6 +1142,7 @@
         color: dayColors[8],
         center: [50.082, 14.42], zoom: 14,
         points: [
+          { lat: 50.0859, lng: 14.4087, icon: '🏨', name: 'Archibald At The Charles Bridge 출발', time: '08:30–09:00', desc: '비세흐라드 이동' },
           { lat: 50.0647, lng: 14.4198, icon: '🏰', name: '비세흐라드', time: '09:00–11:00', desc: '성벽 산책 · 드보르작 묘지' },
           { lat: 50.0726, lng: 14.4147, icon: '🛒', name: '나플라브카 파머스 마켓', time: '11:00–12:00', desc: '토요일 한정 강변 마켓' },
           { lat: 50.0790, lng: 14.4070, icon: '🍽️', name: 'Café Savoy', time: '12:15–13:00', desc: '점심 추천 (1893년 네오르네상스)' },
@@ -891,6 +1156,7 @@
         color: dayColors[9],
         center: [49.4, 14.4], zoom: 8,
         points: [
+          { lat: 50.0859, lng: 14.4087, icon: '🏨', name: 'Archibald At The Charles Bridge 출발', time: '08:45–09:10', desc: 'Praha hl.n. 이동' },
           { lat: 50.0832, lng: 14.4348, icon: '🚆', name: 'Praha hl.n. 출발', time: '09:21', desc: 'IC 533 직행 (2h 28m) / 239 CZK' },
           { lat: 48.8223, lng: 14.3173, icon: '🚆', name: 'Český Krumlov역 도착', time: '11:49', desc: '도보 약 20분 → 구시가지' },
           { lat: 48.8108, lng: 14.3155, icon: '🍽️', name: 'Krčma Šatlava', time: '12:15–13:00', desc: '점심 (중세 지하감옥 컨셉)' },
@@ -918,25 +1184,27 @@
     // ── Layers ──
     const layerGroups = {};
     const routeLines = {};
+    const dayPointEntries = {};
     let activeDay = null;
+    let activePointIndex = null;
     let locationMarker = null;
     let locationCircle = null;
     let watchId = null;
     let isTracking = false;
 
     // Global marker registry for overlap detection
-    const allMarkers = []; // { marker, pt, day, popupHtml }
+    const allMarkers = []; // { marker, pt, day, popupHtml, index }
 
     // Custom icon factory
-    function createIcon(emoji, color) {
+    function createIcon(emoji, color, order, isStart = false) {
+      const markerClass = isStart ? 'custom-marker start-point' : 'custom-marker';
+      const startTag = isStart ? '<div class="marker-start">START</div>' : '';
       return L.divIcon({
-        html: `<div style="
-      background: ${color};
-      width: 32px; height: 32px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; border: 2px solid rgba(255,255,255,0.8);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    ">${emoji}</div>`,
+        html: `<div class="${markerClass}" style="--marker-color:${color};">
+      <div class="marker-core">${emoji}</div>
+      <div class="marker-order">${order}</div>
+      ${startTag}
+    </div>`,
         className: '',
         iconSize: [32, 32],
         iconAnchor: [16, 16],
@@ -1006,27 +1274,156 @@
       if (!entry) return;
       map.closePopup();
       setTimeout(() => {
-        L.popup({ maxWidth: 260 })
-          .setLatLng(currentOverlapLatLng)
-          .setContent(entry.popupHtml)
+        if (activeDay !== entry.day.id) {
+          showDay(entry.day.id, entry.index);
+        } else {
+          setActivePoint(entry.day.id, entry.index, { pan: false, openPopup: true });
+        }
+      }, 60);
+    }
+
+    function updatePointNavigator(dayId) {
+      const titleEl = document.getElementById('pointNavTitle');
+      const indexEl = document.getElementById('pointNavIndex');
+      const nameEl = document.getElementById('pointNavName');
+      const metaEl = document.getElementById('pointNavMeta');
+      const prevBtn = document.getElementById('prevPointBtn');
+      const nextBtn = document.getElementById('nextPointBtn');
+
+      if (!dayId || !dayPointEntries[dayId] || dayPointEntries[dayId].length === 0) {
+        titleEl.textContent = '포인트 네비게이터';
+        indexEl.textContent = '-';
+        nameEl.textContent = '날짜를 선택하면 시작점부터 순서대로 이동할 수 있습니다.';
+        metaEl.textContent = '현재 일정 노드는 지도에서 강조 표시됩니다.';
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        updateCollapsedNavigator(null);
+        return;
+      }
+
+      const day = days.find(d => d.id === dayId);
+      const entries = dayPointEntries[dayId];
+      const safeIndex = Math.max(0, Math.min(activePointIndex ?? 0, entries.length - 1));
+      const current = entries[safeIndex];
+
+      titleEl.textContent = `${day.label} ${day.date} · ${day.title}`;
+      indexEl.textContent = `${safeIndex + 1} / ${entries.length}${safeIndex === 0 ? ' · 시작점' : ''}`;
+      nameEl.textContent = `${current.pt.icon} ${current.pt.name}`;
+      metaEl.textContent = `${current.pt.time}${current.pt.desc ? ` · ${current.pt.desc}` : ''}`;
+      prevBtn.disabled = safeIndex === 0;
+      nextBtn.disabled = safeIndex === entries.length - 1;
+      updateCollapsedNavigator(dayId);
+    }
+
+    function updateCollapsedNavigator(dayId) {
+      const panelCollapsed = document.getElementById('panel').classList.contains('collapsed');
+      const navEl = document.getElementById('collapsedNav');
+      const statusEl = document.getElementById('collapsedNavStatus');
+      const prevBtn = document.getElementById('collapsedPrevBtn');
+      const nextBtn = document.getElementById('collapsedNextBtn');
+      const bodyEl = document.body;
+
+      if (!panelCollapsed) {
+        navEl.classList.remove('visible');
+        bodyEl.classList.remove('collapsed-nav-on');
+        return;
+      }
+
+      navEl.classList.add('visible');
+      bodyEl.classList.add('collapsed-nav-on');
+
+      if (!dayId || !dayPointEntries[dayId] || dayPointEntries[dayId].length === 0) {
+        statusEl.textContent = '날짜 선택 후 사용';
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        return;
+      }
+
+      const day = days.find(d => d.id === dayId);
+      const entries = dayPointEntries[dayId];
+      const safeIndex = Math.max(0, Math.min(activePointIndex ?? 0, entries.length - 1));
+
+      statusEl.textContent = `${day.label} ${safeIndex + 1}/${entries.length}`;
+      prevBtn.disabled = safeIndex === 0;
+      nextBtn.disabled = safeIndex === entries.length - 1;
+    }
+
+    function setActivePoint(dayId, pointIndex, options = {}) {
+      const { pan = true, openPopup = false, forceCenter = false, focusZoom = null } = options;
+      const entries = dayPointEntries[dayId];
+      if (!entries || entries.length === 0) return;
+
+      const safeIndex = Math.max(0, Math.min(pointIndex, entries.length - 1));
+      activePointIndex = safeIndex;
+
+      entries.forEach((entry, idx) => {
+        const el = entry.marker.getElement();
+        if (!el) return;
+        const markerNode = el.querySelector('.custom-marker');
+        if (markerNode) {
+          markerNode.classList.toggle('active-point', idx === safeIndex);
+        }
+        entry.marker.setZIndexOffset(idx === safeIndex ? 2600 : (idx === 0 ? 900 : 0));
+      });
+
+      updatePointNavigator(dayId);
+
+      const target = entries[safeIndex];
+      if (!target) return;
+
+      if (pan) {
+        if (typeof focusZoom === 'number') {
+          const zoomLevel = Math.max(map.getZoom(), focusZoom);
+          map.setView(target.marker.getLatLng(), zoomLevel, { animate: true, duration: 0.45 });
+        } else {
+          map.panTo(target.marker.getLatLng(), { animate: true, duration: 0.45 });
+        }
+      }
+      if (openPopup) {
+        map.closePopup();
+        L.popup({ maxWidth: 260, autoPan: !forceCenter })
+          .setLatLng(target.marker.getLatLng())
+          .setContent(target.popupHtml)
           .openOn(map);
-      }, 50);
+        if (forceCenter) {
+          setTimeout(() => {
+            map.panTo(target.marker.getLatLng(), { animate: true, duration: 0.35 });
+          }, 30);
+        }
+      }
+    }
+
+    function prevPoint() {
+      if (!activeDay) return;
+      const nextIndex = Math.max(0, (activePointIndex ?? 0) - 1);
+      setActivePoint(activeDay, nextIndex, { pan: true, openPopup: true, forceCenter: true });
+    }
+
+    function nextPoint() {
+      if (!activeDay) return;
+      const entries = dayPointEntries[activeDay];
+      if (!entries || entries.length === 0) return;
+      const nextIndex = Math.min(entries.length - 1, (activePointIndex ?? 0) + 1);
+      setActivePoint(activeDay, nextIndex, { pan: true, openPopup: true, forceCenter: true });
     }
 
     // ── Build Layers ──
     days.forEach(day => {
       const group = L.layerGroup();
       const coords = [];
+      dayPointEntries[day.id] = [];
 
       day.points.forEach((pt, i) => {
         const marker = L.marker([pt.lat, pt.lng], {
-          icon: createIcon(pt.icon, day.color)
+          icon: createIcon(pt.icon, day.color, i + 1, i === 0)
         });
 
         const popupHtml = buildDetailHtml(pt, day);
+        const entry = { marker, pt, day, popupHtml, index: i };
 
         // Register marker globally for overlap detection
-        allMarkers.push({ marker, pt, day, popupHtml });
+        allMarkers.push(entry);
+        dayPointEntries[day.id].push(entry);
 
         // Intercept click for overlap detection
         marker.on('click', function (e) {
@@ -1048,6 +1445,10 @@
               .setContent(popupHtml)
               .openOn(map);
           }
+
+          if (activeDay === day.id) {
+            setActivePoint(day.id, i, { pan: false, openPopup: false });
+          }
         });
 
         // Permanent label below marker
@@ -1061,6 +1462,7 @@
         });
 
         marker.addTo(group);
+        marker.setZIndexOffset(i === 0 ? 900 : 0);
         coords.push([pt.lat, pt.lng]);
       });
 
@@ -1093,8 +1495,11 @@
     });
 
     // ── Show Day ──
-    function showDay(dayId) {
+    function showDay(dayId, initialPointIndex = 0) {
+      // Day 전환 시 이전 일정 팝업을 항상 닫아 잔상 방지
+      map.closePopup();
       activeDay = dayId;
+      activePointIndex = initialPointIndex;
       Object.values(layerGroups).forEach(g => map.removeLayer(g));
       layerGroups[dayId].addTo(map);
 
@@ -1106,11 +1511,24 @@
       document.querySelector(`.day-btn[data-day="${dayId}"]`).classList.add('active');
       document.getElementById('allBtn').classList.remove('active');
       updateLegend(dayId);
+      const startFocusZoom = Math.max(day.zoom, 12);
+      setTimeout(() => {
+        // 날짜 선택 시 해당 일자의 첫 일정(또는 지정 인덱스) 위치를 화면 중앙으로 이동
+        setActivePoint(dayId, initialPointIndex, {
+          pan: true,
+          openPopup: true,
+          forceCenter: true,
+          focusZoom: startFocusZoom
+        });
+      }, 0);
     }
 
     // ── Show All ──
     function showAll() {
+      // 전체 보기 전환 시에도 기존 팝업 잔상 제거
+      map.closePopup();
       activeDay = null;
+      activePointIndex = null;
       Object.values(layerGroups).forEach(g => map.removeLayer(g));
       days.forEach(day => { layerGroups[day.id].addTo(map); });
 
@@ -1121,6 +1539,18 @@
       document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('allBtn').classList.add('active');
       updateLegend(null);
+      updatePointNavigator(null);
+
+      // Clear active point emphasis when all days are visible.
+      Object.values(dayPointEntries).forEach(entries => {
+        entries.forEach(entry => {
+          const el = entry.marker.getElement();
+          if (!el) return;
+          const markerNode = el.querySelector('.custom-marker');
+          if (markerNode) markerNode.classList.remove('active-point');
+          entry.marker.setZIndexOffset(entry.index === 0 ? 900 : 0);
+        });
+      });
     }
 
     // ── Legend ──
@@ -1211,11 +1641,13 @@
       const panel = document.getElementById('panel');
       panel.classList.toggle('collapsed');
       document.getElementById('openBtn').classList.toggle('visible', panel.classList.contains('collapsed'));
+      updateCollapsedNavigator(activeDay);
     }
 
     function openPanel() {
       document.getElementById('panel').classList.remove('collapsed');
       document.getElementById('openBtn').classList.remove('visible');
+      updateCollapsedNavigator(activeDay);
     }
 
     // ── Init: show all ──
