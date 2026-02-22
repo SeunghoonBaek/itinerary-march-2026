@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>🗺️ 2026년 3월 유럽 여행 지도</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -279,7 +279,7 @@
 
     .collapsed-nav {
       position: fixed;
-      bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+      bottom: max(44px, calc(env(safe-area-inset-bottom, 0px) + 24px));
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
@@ -301,7 +301,7 @@
     }
 
     body.collapsed-nav-on .legend {
-      bottom: calc(env(safe-area-inset-bottom, 0px) + 96px);
+      bottom: max(122px, calc(env(safe-area-inset-bottom, 0px) + 104px));
     }
 
     .collapsed-nav-status {
@@ -820,7 +820,7 @@
       }
 
       .collapsed-nav {
-        bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+        bottom: max(40px, calc(env(safe-area-inset-bottom, 0px) + 22px));
         left: 50%;
         transform: translateX(-50%);
         right: auto;
@@ -851,7 +851,7 @@
       }
 
       body.collapsed-nav-on .legend {
-        bottom: calc(env(safe-area-inset-bottom, 0px) + 92px);
+        bottom: max(116px, calc(env(safe-area-inset-bottom, 0px) + 96px));
       }
 
       .bottom-btns {
