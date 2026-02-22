@@ -279,7 +279,7 @@
 
     .collapsed-nav {
       position: fixed;
-      bottom: 10px;
+      bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
@@ -301,7 +301,7 @@
     }
 
     body.collapsed-nav-on .legend {
-      bottom: 84px;
+      bottom: calc(env(safe-area-inset-bottom, 0px) + 96px);
     }
 
     .collapsed-nav-status {
@@ -820,7 +820,7 @@
       }
 
       .collapsed-nav {
-        bottom: 8px;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
         left: 50%;
         transform: translateX(-50%);
         right: auto;
@@ -851,7 +851,7 @@
       }
 
       body.collapsed-nav-on .legend {
-        bottom: 72px;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 92px);
       }
 
       .bottom-btns {
@@ -1189,6 +1189,12 @@
     let activePointIndex = null;
     let locationMarker = null;
     let locationCircle = null;
+    let lastLocationLatLng = null;
+    let lastLocationAccuracy = null;
+    let geoHeading = null;
+    let deviceHeading = null;
+    let orientationHandler = null;
+    let orientationActive = false;
     let watchId = null;
     let isTracking = false;
 
@@ -1574,13 +1580,116 @@
       }
     }
 
+    function normalizeHeading(deg) {
+      if (!Number.isFinite(deg)) return null;
+      return ((deg % 360) + 360) % 360;
+    }
+
+    function getActiveHeading() {
+      if (Number.isFinite(deviceHeading)) return deviceHeading;
+      if (Number.isFinite(geoHeading)) return geoHeading;
+      return null;
+    }
+
+    function createLocationIcon(headingDeg) {
+      const heading = Number.isFinite(headingDeg) ? headingDeg.toFixed(1) : null;
+      const headingNeedle = heading === null ? '' : `
+        <div style="
+          position:absolute; left:50%; top:50%;
+          width:2px; height:14px; border-radius:2px;
+          background:#fff;
+          transform:translate(-50%, -100%) rotate(${heading}deg);
+          transform-origin:50% 100%;
+          box-shadow:0 0 6px rgba(255,255,255,0.8);
+        "></div>
+        <div style="
+          position:absolute; left:50%; top:50%;
+          width:0; height:0;
+          border-left:5px solid transparent;
+          border-right:5px solid transparent;
+          border-bottom:7px solid #fff;
+          transform:translate(-50%, -135%) rotate(${heading}deg);
+          transform-origin:50% 135%;
+          filter:drop-shadow(0 0 4px rgba(255,255,255,0.75));
+        "></div>
+      `;
+
+      return L.divIcon({
+        html: `<div style="position:relative; width:28px; height:28px;">
+          <div style="
+            position:absolute; left:50%; top:50%;
+            width:18px; height:18px; border-radius:50%;
+            background:#4285f4; border:3px solid #fff;
+            transform:translate(-50%, -50%);
+            box-shadow:0 0 12px rgba(66,133,244,0.6);
+          "></div>
+          ${headingNeedle}
+        </div>`,
+        className: '',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      });
+    }
+
+    function applyLocationVisuals() {
+      if (!locationMarker || !lastLocationLatLng) return;
+      locationMarker.setIcon(createLocationIcon(getActiveHeading()));
+      locationMarker.setLatLng(lastLocationLatLng);
+      if (locationCircle && Number.isFinite(lastLocationAccuracy)) {
+        locationCircle.setLatLng(lastLocationLatLng).setRadius(lastLocationAccuracy);
+      }
+    }
+
+    async function startOrientationTracking() {
+      if (!window.DeviceOrientationEvent || orientationActive) return;
+
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+        try {
+          const state = await DeviceOrientationEvent.requestPermission();
+          if (state !== 'granted') return;
+        } catch (err) {
+          return;
+        }
+      }
+
+      orientationHandler = (event) => {
+        let heading = null;
+        if (typeof event.webkitCompassHeading === 'number') {
+          heading = event.webkitCompassHeading;
+        } else if (typeof event.alpha === 'number') {
+          heading = 360 - event.alpha;
+        }
+        const normalized = normalizeHeading(heading);
+        if (!Number.isFinite(normalized)) return;
+        deviceHeading = normalized;
+        applyLocationVisuals();
+      };
+
+      window.addEventListener('deviceorientationabsolute', orientationHandler, true);
+      window.addEventListener('deviceorientation', orientationHandler, true);
+      orientationActive = true;
+    }
+
+    function stopOrientationTracking() {
+      if (!orientationActive || !orientationHandler) return;
+      window.removeEventListener('deviceorientationabsolute', orientationHandler, true);
+      window.removeEventListener('deviceorientation', orientationHandler, true);
+      orientationActive = false;
+      orientationHandler = null;
+    }
+
     // ── My Location ──
-    function toggleLocation() {
+    async function toggleLocation() {
       const btn = document.getElementById('locBtn');
       if (isTracking) {
         if (watchId !== null) navigator.geolocation.clearWatch(watchId);
+        stopOrientationTracking();
         if (locationMarker) map.removeLayer(locationMarker);
         if (locationCircle) map.removeLayer(locationCircle);
+        lastLocationLatLng = null;
+        lastLocationAccuracy = null;
+        geoHeading = null;
+        deviceHeading = null;
         locationMarker = null; locationCircle = null;
         isTracking = false;
         btn.classList.remove('tracking');
@@ -1596,37 +1705,34 @@
       isTracking = true;
       btn.classList.add('tracking');
       btn.innerHTML = '🟢';
+      startOrientationTracking();
 
       watchId = navigator.geolocation.watchPosition(
         (pos) => {
           const lat = pos.coords.latitude;
           const lng = pos.coords.longitude;
           const acc = pos.coords.accuracy;
+          const heading = normalizeHeading(pos.coords.heading);
+          if (Number.isFinite(heading)) geoHeading = heading;
+          lastLocationLatLng = [lat, lng];
+          lastLocationAccuracy = acc;
+
           if (locationMarker) {
-            locationMarker.setLatLng([lat, lng]);
-            locationCircle.setLatLng([lat, lng]).setRadius(acc);
+            applyLocationVisuals();
           } else {
-            locationMarker = L.marker([lat, lng], {
-              icon: L.divIcon({
-                html: `<div style="
-              width: 18px; height: 18px; border-radius: 50%;
-              background: #4285f4; border: 3px solid #fff;
-              box-shadow: 0 0 12px rgba(66,133,244,0.6);
-            "></div>`,
-                className: '',
-                iconSize: [18, 18],
-                iconAnchor: [9, 9]
-              }),
+            locationMarker = L.marker(lastLocationLatLng, {
+              icon: createLocationIcon(getActiveHeading()),
               zIndexOffset: 2000
             }).addTo(map).bindPopup('📍 내 위치');
-            locationCircle = L.circle([lat, lng], {
+            locationCircle = L.circle(lastLocationLatLng, {
               radius: acc, color: '#4285f4', fillColor: '#4285f4',
               fillOpacity: 0.1, weight: 1
             }).addTo(map);
-            map.setView([lat, lng], 15);
+            map.setView(lastLocationLatLng, 15);
           }
         },
         (err) => {
+          stopOrientationTracking();
           alert('위치를 가져올 수 없습니다: ' + err.message);
           isTracking = false;
           btn.classList.remove('tracking');
