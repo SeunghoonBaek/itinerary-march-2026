@@ -1197,6 +1197,7 @@
     let orientationActive = false;
     let watchId = null;
     let isTracking = false;
+    let panelReopenLockUntil = 0;
 
     // Global marker registry for overlap detection
     const allMarkers = []; // { marker, pt, day, popupHtml, index }
@@ -1485,6 +1486,11 @@
       routeLines[day.id] = line;
     });
 
+    function selectDayFromPanel(dayId) {
+      showDay(dayId, 0, false);
+      collapsePanel(true);
+    }
+
     // ── Day Selector UI ──
     const dayListEl = document.getElementById('dayList');
     days.forEach(day => {
@@ -1496,7 +1502,11 @@
     <span class="day-label">${day.label}</span>
     <span class="day-desc">${day.date} ${day.title}</span>
   `;
-      btn.onclick = () => showDay(day.id, 0, true);
+      btn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        selectDayFromPanel(day.id);
+      };
       dayListEl.appendChild(btn);
     });
 
@@ -1529,7 +1539,7 @@
       }, 0);
 
       if (closePanelOnSelect) {
-        collapsePanel();
+        collapsePanel(true);
       }
     }
 
@@ -1747,10 +1757,13 @@
     }
 
     // ── Panel Toggle ──
-    function collapsePanel() {
+    function collapsePanel(withReopenLock = false) {
       const panel = document.getElementById('panel');
       panel.classList.add('collapsed');
       document.getElementById('openBtn').classList.add('visible');
+      if (withReopenLock) {
+        panelReopenLockUntil = Date.now() + 420;
+      }
       updateCollapsedNavigator(activeDay);
     }
 
@@ -1764,6 +1777,7 @@
     }
 
     function openPanel() {
+      if (Date.now() < panelReopenLockUntil) return;
       const panel = document.getElementById('panel');
       panel.classList.remove('collapsed');
       document.getElementById('openBtn').classList.remove('visible');
