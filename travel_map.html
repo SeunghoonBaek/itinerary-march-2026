@@ -1496,12 +1496,12 @@
     <span class="day-label">${day.label}</span>
     <span class="day-desc">${day.date} ${day.title}</span>
   `;
-      btn.onclick = () => showDay(day.id);
+      btn.onclick = () => showDay(day.id, 0, true);
       dayListEl.appendChild(btn);
     });
 
     // ── Show Day ──
-    function showDay(dayId, initialPointIndex = 0) {
+    function showDay(dayId, initialPointIndex = 0, closePanelOnSelect = false) {
       // Day 전환 시 이전 일정 팝업을 항상 닫아 잔상 방지
       map.closePopup();
       activeDay = dayId;
@@ -1527,6 +1527,10 @@
           focusZoom: startFocusZoom
         });
       }, 0);
+
+      if (closePanelOnSelect) {
+        collapsePanel();
+      }
     }
 
     // ── Show All ──
@@ -1743,15 +1747,25 @@
     }
 
     // ── Panel Toggle ──
-    function togglePanel() {
+    function collapsePanel() {
       const panel = document.getElementById('panel');
-      panel.classList.toggle('collapsed');
-      document.getElementById('openBtn').classList.toggle('visible', panel.classList.contains('collapsed'));
+      panel.classList.add('collapsed');
+      document.getElementById('openBtn').classList.add('visible');
       updateCollapsedNavigator(activeDay);
     }
 
+    function togglePanel() {
+      const panel = document.getElementById('panel');
+      if (panel.classList.contains('collapsed')) {
+        openPanel();
+      } else {
+        collapsePanel();
+      }
+    }
+
     function openPanel() {
-      document.getElementById('panel').classList.remove('collapsed');
+      const panel = document.getElementById('panel');
+      panel.classList.remove('collapsed');
       document.getElementById('openBtn').classList.remove('visible');
       updateCollapsedNavigator(activeDay);
     }
