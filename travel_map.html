@@ -131,6 +131,8 @@
       font-size: 12.5px;
       font-family: inherit;
       transition: all 0.2s;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .day-btn:hover {
@@ -1198,6 +1200,7 @@
     let watchId = null;
     let isTracking = false;
     let panelReopenLockUntil = 0;
+    let daySelectTapLockUntil = 0;
 
     // Global marker registry for overlap detection
     const allMarkers = []; // { marker, pt, day, popupHtml, index }
@@ -1491,6 +1494,17 @@
       collapsePanel(true);
     }
 
+    function handleDayButtonSelect(e, dayId) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      const now = Date.now();
+      if (now < daySelectTapLockUntil) return;
+      daySelectTapLockUntil = now + 320;
+      selectDayFromPanel(dayId);
+    }
+
     // ── Day Selector UI ──
     const dayListEl = document.getElementById('dayList');
     days.forEach(day => {
@@ -1502,11 +1516,9 @@
     <span class="day-label">${day.label}</span>
     <span class="day-desc">${day.date} ${day.title}</span>
   `;
-      btn.onclick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        selectDayFromPanel(day.id);
-      };
+      btn.addEventListener('pointerup', (e) => handleDayButtonSelect(e, day.id));
+      btn.addEventListener('touchend', (e) => handleDayButtonSelect(e, day.id), { passive: false });
+      btn.addEventListener('click', (e) => handleDayButtonSelect(e, day.id));
       dayListEl.appendChild(btn);
     });
 
