@@ -3,6 +3,14 @@
 > **여행 기간:** 2026.03.06 (금) ~ 2026.03.16 (월) · 11일  
 > **경로:** 빈(Vienna) → 잘츠부르크(Salzburg) → 프라하(Prague) → 드레스덴(당일) → 체스키 크룸로프(당일) → 프라하 출발
 
+## 📂 관련 문서
+
+| 문서 | 설명 |
+|:---|:---|
+| [여행일정 (Notion용)](여행일정_2026년3월_Notion.md) | 전체 일정 — Notion 포맷 |
+| [대중교통 결제 가이드](public_transit_payment.md) | 도시별 컨택리스 결제·앱·티켓 구매 방법 |
+| [출국 전 구매 체크리스트](pre_purchase_checklist.md) | 사전 구매 항목 + 앱 설치 목록 |
+
 ---
 
 ## 📅 1일차 — 2026-03-06 (금) · Vienna 도착
@@ -27,14 +35,15 @@
 
 ## 📅 2일차 — 2026-03-07 (토) · Vienna 관광
 
-### 🎫 Vienna FLEXI PASS (4회권) — 확정
+### 🎫 Vienna FLEXI PASS (3회권) — 결제 완료 ✅
 
 | 항목 | 내용 |
 |:---|:---|
-| 가격 | Special €85 / Regular €95 |
-| 혜택 | ✅ 우선 입장(Preferred Admission) — 줄 생략<br>✅ 유효기간 60일 (첫 사용 기준)<br>✅ 4개 시설 자유 선택 |
-| 확정 유료 입장 | 국립도서관 €11 + 호프부르크 €20 + Upper Belvedere €22.50 = **€53.50** |
-| 구입처 | [viennaticket.at FLEXI Pass](https://www.viennaticket.at/en/flexi-pass) · [Viator](https://www.viator.com/Vienna/d979-ttd) |
+| 주문번호 | 238705 |
+| 비용 | **€196 (3회권 × 2장, 인당 €98)** — 결제 완료 |
+| 혜택 | ✅ 우선 입장(Preferred Admission) — 줄 생략<br>✅ 유효기간 60일 (첫 사용 기준)<br>✅ 3개 시설 자유 선택 |
+| 사용 시설 | 국립도서관 Prunksaal + 호프부르크 왕궁 + Upper Belvedere |
+| 구입처 | [viennapass.de](https://www.viennapass.de/en/shop) (mobile PASS — Apple/Google Wallet 저장) |
 
 | 시간 | 활동 | 상세 |
 |:---|:---|:---|
