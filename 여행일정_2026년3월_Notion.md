@@ -42,12 +42,13 @@
 
 # 📅 2일차 — 2026-03-07 (토) · Vienna 관광
 
-## 🎫 Vienna FLEXI PASS (4회권) — 확정
+## 🎫 Vienna FLEXI PASS (3회권) — 결제 완료 ✅
 
-- 가격: Special €85 / Regular €95
-- ✅ 우선 입장 (줄 생략) / 유효기간 60일 / 4개 시설 자유 선택
-- 확정 유료 입장: 국립도서관 €11 + 호프부르크 €20 + Upper Belvedere €22.50 = **€53.50**
-- 구입처: [viennaticket.at](https://www.viennaticket.at/en/flexi-pass) · [Viator](https://www.viator.com/Vienna/d979-ttd)
+- 주문번호: 238705
+- 비용: **€196 (3회권 × 2장, 인당 €98)** — 결제 완료
+- ✅ 우선 입장 (줄 생략) / 유효기간 60일 / 3개 시설 자유 선택
+- 사용 시설: 국립도서관 Prunksaal + 호프부르크 왕궁 + Upper Belvedere
+- 구입처: [viennapass.de](https://www.viennapass.de/en/shop) (mobile PASS — Apple/Google Wallet 저장)
 
 ## 일정
 
