@@ -79,7 +79,7 @@
 | 09:00–09:30 | 🥐 아침 | **A)** Bäckerei Ströck (05:00-) — 빵/샌드위치 빠르고 무난<br>**B)** Bäckerei Anker (05:00-) — 로컬 체인<br>**C)** Starbucks (06:00-)<br>**D)** Konditorei Oberlaa (08:00-) — 디저트 강점 |
 | 09:38–12:08 | 🚆 빈→잘츠부르크 | [Westbahn](https://westbahn.at) #908 (2h 30m) / Wien Westbahnhof 출발 / 예약 완료: 총 €77.98 (Westbahn 앱) |
 | 12:25–13:00 | 🏨 숙소 짐 맡기기 | [Villa Elisa](https://www.agoda.com/ko-kr/villa-elisa/hotel/all/salzburg-at.html) |
-| 13:00–13:50 | 🍽️ 점심 | **A)** Bärenwirt ★최추천★ — 1663년 전통, Backhendl 유명 / 11:00–23:00 / ⚠️ 예약 권장<br>**B)** Café Bazar — 잘츠흐 강변 클래식 카페 / 09:00–18:00<br>**후보:** Stiftskeller St. Peter (€25–40) · Triangel (€15–25) |
+| 13:00–13:50 | 🍽️ 점심 | **A)** Di Renzi Ristorante ★최추천★ — ⭐4.6 (969개), 수제 파스타·프로슈토, 와인 셀렉션 / Linzergasse 4 / 매일 12:00–24:00 (주방 22:00)<br>**B)** Bärenwirt — 1663년 전통, Backhendl 유명 / 11:00–23:00 / ⚠️ 예약 권장<br>**후보:** Café Bazar (강변 카페) · Stiftskeller St. Peter (€25–40) · Triangel (€15–25) |
 | 14:40–15:00 | 🏛️ 구시가지 + 모차르트 생가 | Getreidegasse 이동 → 모차르트 생가 **20분 핵심 관람** (외관+1층 하이라이트)<br>운영: 매일 09:00–17:30 / 마지막 입장 17:00 / €15 |
 | 15:00–17:00 | 🏰 호엔잘츠부르크 요새 | FestungsBahn 탑승 → **15:10–15:15 탑승 목표** → 관람 약 1시간 45분<br>운영: 09:30–17:00 (1-4월) / FestungsBahn 마지막 상행 17:00, 하행 17:15<br>입장: 폐장 30분 전(16:30)까지 / €15.5-19.2 |
 | 18:00–19:30 | 🍽️ 저녁 | **A)** Augustiner Bräustübl ★최추천★ — 1621년 수도원 양조장, 나무통 생맥주 / 14:30–22:30 / €15–25<br>**B)** Stiegl-Keller ★동선 최적★ — 요새 하차 후 도보 2-3분, 전망 테라스 / 11:00–22:00 / €15–25<br>**C)** Gasthof Goldgasse — 700년 역사 모던 오스트리아 / 12:00–21:00 / €25–40 |
